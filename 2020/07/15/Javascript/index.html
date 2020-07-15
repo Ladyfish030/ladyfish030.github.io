@@ -7,15 +7,15 @@
   
   <title>Javascript | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这个构造函数，">
+  <meta name="description" content="[TOC] 继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript">
-<meta property="og:url" content="http://yoursite.com/2020/07/14/Javascript/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/Javascript/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这个构造函数，">
+<meta property="og:description" content="[TOC] 继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-14T04:45:18.000Z">
-<meta property="article:modified_time" content="2020-07-14T14:27:51.194Z">
+<meta property="article:published_time" content="2020-07-15T04:45:18.000Z">
+<meta property="article:modified_time" content="2020-07-15T14:23:15.402Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
@@ -69,8 +69,8 @@
       <div class="outer">
         <section id="main"><article id="post-Javascript" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/14/Javascript/" class="article-date">
-  <time datetime="2020-07-14T04:45:18.000Z" itemprop="datePublished">2020-07-14</time>
+    <a href="/2020/07/15/Javascript/" class="article-date">
+  <time datetime="2020-07-15T04:45:18.000Z" itemprop="datePublished">2020-07-15</time>
 </a>
     
   </div>
@@ -89,7 +89,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="继承发展史"><a href="#继承发展史" class="headerlink" title="继承发展史"></a>继承发展史</h2><blockquote>
+        <p>[TOC]</p>
+<h2 id="继承发展史"><a href="#继承发展史" class="headerlink" title="继承发展史"></a>继承发展史</h2><blockquote>
 <h4 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h4></blockquote>
 <p>原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。<br><u>构造函数和普通函数的区别</u>：<br>调用区别：<br>普通函数的调用方式：直接调用</p>
 <p> <code>person();</code></p>
@@ -132,7 +133,17 @@
 <blockquote>
 <h4 id="圣杯模型："><a href="#圣杯模型：" class="headerlink" title="圣杯模型："></a>圣杯模型：</h4></blockquote>
 <p>公有原型+原型链（一个以公有原型为原型的新构造函数，并使得我们的目标函数成为一个被这个新构造函数new出来的对象）</p>
-<p><code>function F(){}</code><br><code>F.prototype = Father.prototype</code><br><code>Son.prototype = new F();</code></p>
+<p><code>var inherit = (function(){</code></p>
+<p>​    <code>var F = function(){};</code></p>
+<p>​    <code>return function(Target, Origin){</code></p>
+<p>​    <code>F.prototype = Origin.prototype;</code></p>
+<p>​    <code>Targrt.prototype = new F();</code></p>
+<p>​    <code>Target.prototype.constuctor = Target;</code>构造函数</p>
+<p>​    <code>Target.prototype.uber = Origin.prototype;</code>超级父级</p>
+<p><code>}</code></p>
+<p><code>}());</code></p>
+<p>应用到了闭包，举例：</p>
+<p>一个在构造函数里面定义的变量，当该构造函数中有一个方法{将该变量赋给这个构造函数的一个属性}；此时调用该构造函数的这个方法可以将定义在函数内部的值通过属性传了出来 =》私有化变量，这个变量是他自己的，除非设置了自己的方法，否则别人根本找不到这个变量。圣杯模型中的构造函数F()就成为了一个私有化变量。</p>
 <blockquote>
 <p>others</p>
 </blockquote>
@@ -143,12 +154,74 @@
 <p>如果字符编码小于等于255则该位字节长度为1，若大于255则该位字节长度为2</p>
 <p><strong>注意：中文的逗号的占两位噢~英文的逗号占一位</strong></p>
 </li>
+<li><p>实现一个构造函数的方法连续调用，只要在每一个方法最后<code>return this</code>就可以实现链式调用模式。</p>
+<p><code>Person.sex.name.age</code></p>
+<p>————7.14</p>
+</li>
 </ol>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><blockquote>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4></blockquote>
+<p>变量私有化，不会污染到全局变量</p>
+<p><code>var init = (function(){</code></p>
+<p>​    <code>var name = &#39;abc&#39;;</code></p>
+<p>​    <code>function callName(){</code></p>
+<p>​    <code>console.log(name);</code></p>
+<p>​    <code>}</code></p>
+<p>​    <code>return function(){</code></p>
+<p>​        <code>callName();</code>                        留下一个以后可以调用的接口</p>
+<p>​        <code>}</code></p>
+<p><code>}())</code></p>
+<p><code>init()</code>     =&gt; abc</p>
+<h2 id="对象枚举"><a href="#对象枚举" class="headerlink" title="对象枚举"></a>对象枚举</h2><p><u>属性的表示方法：</u></p>
+<p>（1）Person.name</p>
+<p>（2）Person[‘name’] =&gt;用法更灵活，字符串进行拼接作为属性名</p>
+<blockquote>
+<p>for in循环</p>
+</blockquote>
+<p><code>for(var prop in obj){</code>            prop也可以用其他单词代替，在for in循环中每一圈prop代表一个属性名，用其他单词也是同理；</p>
+<p>​    <code>console.log(prop);</code></p>
+<p><code>console.log obj[prop];</code>           <strong>注意：prop作为一个变量，不可以使用<code>obj.prop</code>访问</strong></p>
+<p><code>}</code></p>
+<blockquote>
+<p>hasOwnProperty过滤方法</p>
+</blockquote>
+<p><code>obj.hasOwnProperty(prop)</code></p>
+<p>作用：辨别该方法是不是这个对象的方法，可以排除方法的方法（也就是一级）返回true,false`</p>
+<blockquote>
+<p>in</p>
+</blockquote>
+<p>判断这个对象上面是否有该属性，一级二级多级的都算</p>
+<p><code>&#39;name&#39; in obj</code>       <strong>属性是字符串，要加单引号</strong></p>
+<blockquote>
+<p>instanceof</p>
+</blockquote>
+<p><code>A instanceof B</code> 判断A对象是不是构造函数B构造出来的（即等同于判断A的原型链上是否有B的原型）</p>
+<p><u>区别 []数组 和 {}对象 的三种方法</u>:</p>
+<p>var obj={}；  </p>
+<ol>
+<li><p>constructor</p>
+<p><code>[].constructor  =&gt;Array</code></p>
+<p><code>obj.constructor =&gt;Object</code></p>
+</li>
+<li><p>instanceof</p>
+<p><code>[] instanceof Array  =&gt;true</code></p>
+<p><code>obj instanceof Array  =&gt;false</code></p>
+</li>
+<li><p>toString</p>
+<p><code>Object.prototype.toString.call([])   =&gt; object Array</code></p>
+<p><code>Object.prototype.toString.call(obj)  =&gt; object Number</code></p>
+<p><code>Object.prototype.toString.call(123)  =&gt; object Object</code></p>
+</li>
+</ol>
+<h2 id="Deep-Clone"><a href="#Deep-Clone" class="headerlink" title="Deep Clone"></a>Deep Clone</h2><p>遍历对象    for(var prop in obj)</p>
+<p>判断是不是原始值    typeof()</p>
+<p>判断是数组还是对象     (三种方法)</p>
+<p>建立相应的数组或对象</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/14/Javascript/" data-id="ckcm01wgh00007wuw6ho87ejd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/Javascript/" data-id="ckcm01wgh00007wuw6ho87ejd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li></ul>
@@ -213,7 +286,7 @@
       <ul>
         
           <li>
-            <a href="/2020/07/14/Javascript/">Javascript</a>
+            <a href="/2020/07/15/Javascript/">Javascript</a>
           </li>
         
           <li>

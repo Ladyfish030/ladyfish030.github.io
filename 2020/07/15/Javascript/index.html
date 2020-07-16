@@ -15,7 +15,7 @@
 <meta property="og:description" content="[TOC] 继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-15T04:45:18.000Z">
-<meta property="article:modified_time" content="2020-07-15T14:23:15.402Z">
+<meta property="article:modified_time" content="2020-07-16T07:41:57.346Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
@@ -213,10 +213,52 @@
 <p><code>Object.prototype.toString.call(123)  =&gt; object Object</code></p>
 </li>
 </ol>
-<h2 id="Deep-Clone"><a href="#Deep-Clone" class="headerlink" title="Deep Clone"></a>Deep Clone</h2><p>遍历对象    for(var prop in obj)</p>
-<p>判断是不是原始值    typeof()</p>
-<p>判断是数组还是对象     (三种方法)</p>
-<p>建立相应的数组或对象</p>
+<h2 id="Deep-Clone"><a href="#Deep-Clone" class="headerlink" title="Deep Clone"></a>Deep Clone</h2><ol>
+<li><p>遍历对象    for(var prop in obj)【一般和hasOwnpropety绑定使用】</p>
+</li>
+<li><p>判断是不是原始值    typeof()</p>
+</li>
+<li><p>判断是数组还是对象     (三种方法，一般采用toString)</p>
+</li>
+<li><p>建立相应的数组或对象</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">origin, target</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> target = target || &#123;&#125;,</span><br><span class="line">	  toStr = <span class="built_in">Object</span>.prototype.toString,		<span class="comment">//简短代替</span></span><br><span class="line">	  arrStr = <span class="string">"[object Array]"</span>;		<span class="comment">//为了进行后期比对</span></span><br><span class="line">	 <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> origin)&#123;</span><br><span class="line">	 	<span class="keyword">if</span>(origin,hasOwnproerty(prop))&#123;</span><br><span class="line">	 		<span class="keyword">if</span>(prigin[prop] !== <span class="string">"null"</span> &amp;&amp; <span class="keyword">typeof</span>(origin[prop]) == <span class="string">'object'</span>)&#123;		<span class="comment">//判断不为空的引用值</span></span><br><span class="line">	 			<span class="keyword">if</span>(toStr.call(origin[prop]) == arrStr)&#123;		<span class="comment">//判断是否为数组</span></span><br><span class="line">	 				target[prop] = [];</span><br><span class="line">	 			&#125;</span><br><span class="line">	 			<span class="keyword">else</span>&#123;</span><br><span class="line">	 				target[prop] = &#123;&#125;;</span><br><span class="line">	 			&#125;</span><br><span class="line">	 			</span><br><span class="line">	 			deepClone(origin[prop],target[prop]);		<span class="comment">//递归，进行数组或对象内的克隆</span></span><br><span class="line">	 			</span><br><span class="line">	 		&#125;</span><br><span class="line">	 		<span class="keyword">else</span>&#123;		<span class="comment">//原始值</span></span><br><span class="line">	 			target[prop] = origin[prop]</span><br><span class="line">	 		&#125;</span><br><span class="line">	 	&#125;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><p>条件判断？是:否</p>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>一种用于传输数据的格式</p>
+<p>JSON.parse();    string –&gt;  json</p>
+<p>JSON.stringify();    json –&gt;string</p>
+<h2 id="JS异步加载"><a href="#JS异步加载" class="headerlink" title="JS异步加载"></a>JS异步加载</h2><ol>
+<li><p>defer异步加载</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;tools.js&quot; defer=&quot;defer&quot;&gt;&lt;/script&gt;</code></p>
+<p>要等到dom文档全部解析完才会被执行，只有IE能用，也可以将代码写到内部</p>
+</li>
+<li><p>aysnc异步加载</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;tools.js&quot; aysnc=&quot;aysnc&quot;&gt;&lt;/script&gt;</code></p>
+<p>加载完就执行，aysnc只能加载外部脚本，不能把js写在script标签里面，IE9及以上</p>
+</li>
+<li><p>创建script,插入到DOM中，加载完毕之后callBack</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url，callback</span>)</span>&#123;		<span class="comment">//按需加载</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.creatElement(<span class="string">'script'</span>);</span><br><span class="line">	script.type = <span class="string">"text/javascript"</span>;		<span class="comment">//下载需要时间，并不能马上用引入的JS中的方法，还没下载完呢</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(script.readyState)&#123;		<span class="comment">//存在状态码的时候</span></span><br><span class="line">    script.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//IE 监听状态码是否改变</span></span><br><span class="line">    <span class="keyword">if</span>(script.readyState == <span class="string">"complete"</span> || script.readyState == <span class="string">"loaded"</span>)&#123;</span><br><span class="line">        callback();		<span class="comment">//当状态码发生改变，从loading变成complete或loaded时，script下载完成，可以执行别的内容了</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    script.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//Safari chrome firefox opera</span></span><br><span class="line">    		callback();		<span class="comment">//当script 确保下载完再进行执行</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    script.src = url;			<span class="comment">//传进来的url带双引号，放在尾部可以防止状态码改变事件不被触发</span></span><br><span class="line">	<span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//引用的话需要用匿名函数</span></span><br><span class="line">loadScript(<span class="string">'demo.js'</span>,text());<span class="comment">//报错，因为未解析JS文件呢，哪能识别到JS里面的text是啥</span></span><br><span class="line">loadScript(<span class="string">'demo.js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//使用匿名函数，函数体内部只有当被执行的时候才会被读取，就是要用到他的时候才去识别他</span></span><br><span class="line">    text();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>JS加载时间线</p>
+</blockquote>
+<p>   ​        1.创建Document对象，开始解析web页面，解析HTML元素和他们的文本内容后添加Element对象和Text节点到文档中。这个阶段<code>Documen.readyState = &quot;loading&quot;。</code></p>
+<p>   ​        2.遇到link外部css，创建线程加载，并继续解析文档。</p>
+<p>   ​        3.遇到script外部js，并且没有设置<code>async</code> ， <code>defer</code> ，浏览器加载，并阻塞，等待js加载完成并执行该脚本，然后继续解析文档</p>
+<p>   ​        4.遇到script外部js，并且设置有<code>async</code>，<code>defer</code> 浏览器创建线程加载，并继续解析文档，对于<code>async</code>属性的脚本，脚本加载完成后立即执行（异步禁止使用<code>docuemnt.write（）</code>）。<!--把document.write()中的内容作为HTML格式输出到网页中，当全部加载完或者在异步加载使用这个方法的时候要非常注意，它会把之前的文档流全部清空--></p>
+<p>   ​        5.遇到img标签等，先正常解析dom结构，然后浏览器异步加载src，并继续解析文档</p>
+<p>   ​        6.当文档解析完成，<code>document.readyState = &quot;interactive&quot;；</code></p>
+<p>   ​        7.文档解析完成后，所有设置有defer的脚本会按照顺序执行。注意和async的不同，但同样禁止<code>document.write()</code></p>
+<p>   ​        8..当文档解析完成之后，document对象触发DOM<code>ContentLoaded</code>事件，这也标志着程序执行从同步脚本执行阶段，转化为事件驱动阶段</p>
+<p>   ​        9.当所有<code>saync</code>的脚本加载完成并执行后，img等加载完成后，<code>document.readyState = &quot;complete&quot;</code> window对象触发load事件</p>
+<p>   ​        10.从此，页面以异步响应方式处理用户输入，网络事件等。</p>
+<p>   <code>window.onload</code>                    //当页面全部加载完才执行</p>
+<p>   <code>document.addEventListener(&#39;DOMContent&#39;,function(){</code></p>
+<p>   <code>},false)</code>                            //dom解析完就执行的部分</p>
 
       
     </div>
@@ -231,6 +273,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/07/16/ES6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ES6
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/13/git/" id="article-nav-older" class="article-nav-link-wrap">
@@ -254,7 +305,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
     </div>
   </div>
 
@@ -264,7 +315,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
     </div>
   </div>
 
@@ -284,6 +335,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/07/16/ES6/">ES6</a>
+          </li>
         
           <li>
             <a href="/2020/07/15/Javascript/">Javascript</a>

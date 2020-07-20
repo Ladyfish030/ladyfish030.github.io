@@ -7,15 +7,15 @@
   
   <title>ES6 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="声明变量 let  let所声明的变量只在let命令所在的代码块内有效，特别是在for循环内部，设置循环变量的那部分是一个父作用域，而循环内部是一个单独的子作用域。 1234for (let i &#x3D; 0; i &lt; 3 ; i++)&amp;#123;	let i &#x3D; &#39;abc&#39;;	console.log(i);&amp;#125;    &#x2F;&#x2F;结果输出三">
+  <meta name="description" content="[TOC] 声明变量 let  let所声明的变量只在let命令所在的代码块内有效，特别是在for循环内部，设置循环变量的那部分是一个父作用域，而循环内部是一个单独的子作用域。 1234for (let i &#x3D; 0; i &lt; 3 ; i++)&amp;#123;	let i &#x3D; &#39;abc&#39;;	console.log(i);&amp;#125;    &#x2F;&amp;#x2F">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6">
 <meta property="og:url" content="http://yoursite.com/2020/07/16/ES6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="声明变量 let  let所声明的变量只在let命令所在的代码块内有效，特别是在for循环内部，设置循环变量的那部分是一个父作用域，而循环内部是一个单独的子作用域。 1234for (let i &#x3D; 0; i &lt; 3 ; i++)&amp;#123;	let i &#x3D; &#39;abc&#39;;	console.log(i);&amp;#125;    &#x2F;&#x2F;结果输出三">
+<meta property="og:description" content="[TOC] 声明变量 let  let所声明的变量只在let命令所在的代码块内有效，特别是在for循环内部，设置循环变量的那部分是一个父作用域，而循环内部是一个单独的子作用域。 1234for (let i &#x3D; 0; i &lt; 3 ; i++)&amp;#123;	let i &#x3D; &#39;abc&#39;;	console.log(i);&amp;#125;    &#x2F;&amp;#x2F">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-16T04:45:18.000Z">
-<meta property="article:modified_time" content="2020-07-18T14:30:51.109Z">
+<meta property="article:modified_time" content="2020-07-20T14:34:35.973Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="ES6">
 <meta name="twitter:card" content="summary">
@@ -89,7 +89,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><blockquote>
+        <p>[TOC]</p>
+<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><blockquote>
 <p>let</p>
 </blockquote>
 <p>let所声明的变量只在let命令所在的代码块内有效，特别是在for循环内部，设置循环变量的那部分是一个父作用域，而循环内部是一个单独的子作用域。</p>
@@ -191,6 +192,84 @@
 <li>赋值语句<code>var {p:a} = {p:42};</code></li>
 </ol>
 <p>只有在赋值而非声明语句中，可以用圆括号</p>
+<h2 id="字符串的扩展"><a href="#字符串的扩展" class="headerlink" title="字符串的扩展"></a>字符串的扩展</h2><blockquote>
+<p>codePoinAt()</p>
+</blockquote>
+<p>codePointAt()方法是判断一个字符是由2个字节还是4个字节组成的最简单的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is32Bit</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> c.codePointAt(<span class="number">0</span>) &gt; <span class="number">0xFFFF</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4个字节则返回true</p>
+<p>2个字节则返回false</p>
+<blockquote>
+<p>String.fromCodePoint()</p>
+</blockquote>
+<p><code>String.fromCodePonit(0x20BB7)        //&quot;𠮷&quot;</code></p>
+<p>就是和codePointAt()发过来的</p>
+<blockquote>
+<p>for…of</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> codePonit <span class="keyword">of</span> <span class="string">'foo'</span>)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(codePoint);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//"f"</span></span><br><span class="line"><span class="comment">//"o"</span></span><br><span class="line"><span class="comment">//"o"</span></span><br></pre></td></tr></table></figure>
+
+<p>for循环和for…of的区别：for不能识别大于0xFFFF的码点，for…of可以识别大于0xFFFF的码点</p>
+<blockquote>
+<p>includes(), startsWith(),  endsWith()</p>
+</blockquote>
+<p><code>includes()</code>：返回布尔值，表示是否找到了参数字符串</p>
+<p><code>startsWith()</code>：返回布尔值，表示参数字符串是否在源字符串的头部</p>
+<p><code>endsWith()</code>：返回布尔值，表示参数字符串是否在源字符串的尾部</p>
+<p>以上三种方法都支持第二个参数，表示开始搜索的位置</p>
+<p>使用第二个参数n的时候，<code>includes()</code>和<code>startsWith()</code>针对从第n个位置到字符串结束位置之间的字符，而 <code>endsWith()</code>针对前n个字符</p>
+<blockquote>
+<p>repeat()</p>
+</blockquote>
+<p>repeat方法返回一个新的字符串，表示将原字符串重复n次</p>
+<p><code>&#39;x&#39;.repeat(3)    // &quot;xxx&quot;</code></p>
+<p>参数如果是小数，则会被取整2.9=&gt;2</p>
+<p>如果参数是0到-1之间的小数，则等同于0，参数NAN等同于0.如果参数是字符串，则会先转化为数字</p>
+<blockquote>
+<p>padStart(), padEnd()</p>
+</blockquote>
+<p><code>padStart()</code>用于头部补全</p>
+<p><code>padEnd()</code>用于尾部补全</p>
+<p>如果源字符串的长度等于或大于指定的最大长度，则返回原字符串。如果用来补全的字符串与原字符串的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串。</p>
+<p><code>&#39;abc&#39;.padStart(10,&#39;0123456789);    //&#39;0123456abc&#39;</code></p>
+<p>如果省略第二个参数，则会用空格补全</p>
+<p>作用：</p>
+<ol>
+<li>为数值补全指定位数</li>
+<li>提示字符串格式</li>
+</ol>
+<h2 id="正则的扩展"><a href="#正则的扩展" class="headerlink" title="正则的扩展"></a>正则的扩展</h2><blockquote>
+<p>RegExp构造函数</p>
+</blockquote>
+<p>如果 <code>RegExp</code>构造函数第一个参数是一个正则对象，那么可以使用第二个参数指定修饰符。而且，返回的正则表达式会忽略原有的正则表达式的修饰符，值使用新指定的修饰符。</p>
+<p>字符串对象共有4个方法可以使用正则表达式：</p>
+<p><code>match()</code> <code>replace()</code> <code>search()</code> <code>split()</code></p>
+<blockquote>
+<p>U修饰符</p>
+</blockquote>
+<p>用来处理大于\uFFFF的UniCode字符</p>
+<blockquote>
+<p>i修饰符</p>
+</blockquote>
+<p>识别非规范的字符</p>
+<blockquote>
+<p>y修饰符</p>
+</blockquote>
+<p>y修饰符的作用与g修饰符类似，也是全局匹配，后一次匹配都从上一次匹配成功的下一个位置开始。不同之处在于，g修饰符只要剩余位置中存在匹配就行，而y修饰符会确保匹配必须从剩余的第一个位置开始，所谓“粘连”</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">"aaa_aa_a"</span>;</span><br><span class="line"><span class="keyword">var</span> r1 = <span class="regexp">/a+/g</span>;</span><br><span class="line"><span class="keyword">var</span> r2 = <span class="regexp">/a+/y</span>;</span><br><span class="line"></span><br><span class="line">r1.exec(s) <span class="comment">// ["aaa"];</span></span><br><span class="line">r2.exec(s) <span class="comment">// ["aaa"];</span></span><br><span class="line"></span><br><span class="line">r1.exec(s) <span class="comment">// ["aa"];</span></span><br><span class="line">r2.exec(s) <span class="comment">// null;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>lastIndex</code>属性指定每一次搜索开始的位置，g修饰符从这个位置开始向后搜索，直到发现匹配为止。y修饰符同样可以使用这个属性，但是要求必须在<code>lastIndex</code>指定的位置发现匹配。</p>
+<blockquote>
+<p>sticky属性</p>
+</blockquote>
+<p><code>(/hello\d/y).sticky    //    true</code></p>
+<p>表示是否设置了y修饰符</p>
+<blockquote>
+<p>flags属性</p>
+</blockquote>
+<p>返回正则表达式的修饰符</p>
+<p><code>/abc/ig.flags        //    &#39;gi&#39;</code></p>
 
       
     </div>
@@ -205,6 +284,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/07/20/grid/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Grid
+        
+      </div>
+    </a>
   
   
     <a href="/2020/07/15/Javascript/" id="article-nav-older" class="article-nav-link-wrap">
@@ -228,7 +316,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-grid/" rel="tag">css-grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
     </div>
   </div>
 
@@ -238,7 +326,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/css-grid/" style="font-size: 10px;">css-grid</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
     </div>
   </div>
 
@@ -258,6 +346,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/07/20/grid/">Grid</a>
+          </li>
         
           <li>
             <a href="/2020/07/16/ES6/">ES6</a>

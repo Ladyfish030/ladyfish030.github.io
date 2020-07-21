@@ -340,6 +340,142 @@
 </blockquote>
 <p>返回正则表达式的修饰符</p>
 <p><code>/abc/ig.flags        //    &#39;gi&#39;</code></p>
+<blockquote>
+<p>s修饰符:dotAll模式</p>
+</blockquote>
+<p>正则表达式中，点(.)是一个特殊的字符，代表任意的单个字符，但是行终止符除外。</p>
+<p>行终止符：</p>
+<ul>
+<li>U+000A    换行符(\n)</li>
+<li>U+000D    回车符(\r)</li>
+<li>U+2028    行分隔符</li>
+<li>U+2029    段分隔符</li>
+</ul>
+<p>引入/s修饰符，使得<code>.</code>可以匹配任意单个字符，这称为dotAll模式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> re = <span class="regexp">/foo.bar/</span>s;</span><br><span class="line"><span class="comment">//另一种写法</span></span><br><span class="line"><span class="comment">//const re = new RegExp('foo.bar','s');</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//dotAll属性，返回一个布尔值，判断该正则表达式是否处在dotAll模式下</span></span><br><span class="line">re.dotAll	<span class="comment">//	true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>具名组匹配</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数字方式</span></span><br><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/</span>;</span><br><span class="line"><span class="keyword">const</span> a = RE_DATE.exce(<span class="string">'1999-12-31'</span>);</span><br><span class="line"><span class="keyword">const</span> year = a[<span class="number">1</span>];	<span class="comment">//	1999</span></span><br><span class="line"><span class="keyword">const</span> month = a[<span class="number">2</span>];	<span class="comment">//	12</span></span><br><span class="line"><span class="keyword">const</span> day = a[<span class="number">3</span>];	<span class="comment">//	31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//具名组匹配：在模式的头部添加“问号 + 尖括号 + 组名”(?&lt;year&gt;)，然后就可以在exce方法返回结果的groups属性上引用该组名。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> RE_DATE = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"><span class="keyword">const</span> a = RE_DATE.exce(<span class="string">'1999-12-31'</span>);</span><br><span class="line"><span class="keyword">const</span> year = a.groups.year;	<span class="comment">//	1999</span></span><br><span class="line"><span class="keyword">const</span> month = a.groups.month;	<span class="comment">//	12</span></span><br><span class="line"><span class="keyword">const</span> day = a.groups.day;	<span class="comment">//	31</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>字符串替换时，使用$&lt;组名&gt;引用具名组：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> re = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="string">'2015-01-02'</span>.replace(re, <span class="string">'$&lt;day&gt;/$&lt;month&gt;/$&lt;year&gt;'</span>);		<span class="comment">//	'02/01/2015'</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>引用：</strong></p>
+<p>如果要在正则表达式内部引用某个“具名组匹配”，可以使用\k&lt;组名&gt;，数字引用依然有效</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> RE_TWICE = <span class="regexp">/^(?&lt;word&gt;[a-z]+)!\k&lt;word&gt;!\1$/</span>;</span><br><span class="line">RE_TWICE.test(<span class="string">'abc!abc!abc'</span>);	<span class="comment">//	true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h2><blockquote>
+<p>Number()</p>
+</blockquote>
+<p>前缀 0b(0B)表示二进制，0o(0O)表示八进制</p>
+<p>Number()方法可以将二进制和八进制的数转化为十进制数</p>
+<p><code>Number(&#39;0b111&#39;);    //    7</code>    </p>
+<blockquote>
+<p>Number.isFinite()</p>
+</blockquote>
+<p>检查一个数值是否为有限的</p>
+<p><strong>只对数值有效，对于非数值一律返回false</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.isFinite(<span class="number">0.8</span>);	<span class="comment">//	true</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(NAN);	<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">'foo'</span>);	<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="string">'15'</span>);	<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isFinite(<span class="literal">true</span>);	<span class="comment">//	false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Number.isNAN()</p>
+</blockquote>
+<p>检查一个数值是否为NAN</p>
+<p><strong>只有对NAN才返回true</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.isNAN(<span class="string">'15'</span>);		<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isNAN(<span class="literal">true</span>);		<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isNAN(<span class="number">9</span>/NAN)   	<span class="comment">//	true</span></span><br><span class="line"><span class="built_in">Number</span>.isNAN(<span class="string">'true'</span>/<span class="number">0</span>);				<span class="comment">//	true</span></span><br><span class="line"><span class="built_in">Number</span>.isNAN(<span class="string">'true'</span>/<span class="string">'true'</span>);		<span class="comment">//	true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Number.parseInt(), Number.parseFloat()</p>
+</blockquote>
+<p>将原本parseInt(), parseFloat()方法移植到了Number对象上面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES5</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">'12.34'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//ES6</span></span><br><span class="line"><span class="built_in">Number</span>.parseInt(<span class="string">'12.34'</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Number.isInteger()</p>
+</blockquote>
+<p>判断一个数是否为整数</p>
+<p><strong>3和3.0被视为同一个数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.isInteger(<span class="string">"15"</span>);	<span class="comment">//	false</span></span><br><span class="line"><span class="built_in">Number</span>.isInteger(<span class="literal">true</span>);	<span class="comment">//	false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Number.EPSILON</p>
+</blockquote>
+<p>ES6在Number对象上面新增一个极小的常量——Number.EPSILON</p>
+<p>引入一个这么小的量，目的在于为浮点数设置一个误差范围，如果浮点数计算能够小于Number.EPSILON，则我们认为得到了正确的结果。</p>
+<blockquote>
+<p>Number.isSafeInteger()</p>
+</blockquote>
+<p>JS能够精确表示的整数范围在 <code>-Math.pow(2,53)</code>和 <code>Math.pow(2,53)</code>之间，超过这个范围就无法精确表示</p>
+<p><code>Math.pow(2,53) === Math.pow(2,53) + 1</code></p>
+<p>ES6引入Number.MAX_SAFT_INTEGER和Number.MIN_SAFT_INTEGER两个常量用来表示这个范围的上下限。</p>
+<blockquote>
+<p>Math.trunc()</p>
+</blockquote>
+<p>用于去除一个数的小数部分，返回整数部分</p>
+<p>对于非数值，内部使用Number方法将其转化为数值</p>
+<p>对于空值和和无法截取整数的值，返回NAN</p>
+<p><code>x &lt; 0 ? Math.ceil(x) : Math.floor(x);</code></p>
+<blockquote>
+<p>Math.sign()</p>
+</blockquote>
+<p>用来判断一个数到底是正数，负数还是零。对于非数值，会先将其转化为数值。</p>
+<ul>
+<li>参数为正数，返回+1</li>
+<li>参数为负数，返回-1</li>
+<li>参数为0，返回0</li>
+<li>参数为-0，返回-0</li>
+<li>其他值，返回NAN</li>
+</ul>
+<blockquote>
+<p>Math.cbrt()</p>
+</blockquote>
+<p>用于计算一个数的立方根，对于非数值，内部先转化为数值</p>
+<blockquote>
+<p>Math.clz32()</p>
+</blockquote>
+<p>JS的整数使用32位二进制形式表示，该方法返回一个数的32位无符号整数形式有多少个前导0</p>
+<p>0的二进制形式全为0，所以有32个前导0</p>
+<p>1的二进制形式是0b1,只有1位，所以32位之中有31个前导0</p>
+<p>左移运算符(&lt;&lt;)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.clz32(<span class="number">1</span>);		<span class="comment">//31</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="number">1</span> &lt;&lt; <span class="number">1</span>);		<span class="comment">//30</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="number">1</span> &lt;&lt; <span class="number">2</span>);		<span class="comment">//29</span></span><br></pre></td></tr></table></figure>
+
+<p>对于小数，该方法只考虑整数部分</p>
+<p>对于空值和其他类型的值，该方法会在内部先将它们转化为数值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.clz32();	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(NAN);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="literal">Infinity</span>);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="literal">null</span>);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="string">'foo'</span>);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32([]);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(&#123;&#125;);	<span class="comment">// 32</span></span><br><span class="line"><span class="built_in">Math</span>.clz32(<span class="literal">true</span>);	<span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>Math.imul()</p>
+</blockquote>
+<p>该方法返回两个数以32位带符号整数形式相乘的结果，返回的也是一个32位的带符号整数。</p>
+<p><code>Math.imul(2,4);        // 8</code></p>
+<blockquote>
+<p>Math.fround</p>
+</blockquote>
+<p>该方法返回一个数的单精度浮点数的形式</p>
+<blockquote>
+<p>Math.hypot()</p>
+</blockquote>
+<p>返回所有参数的平方和的平方根</p>
+<p><code>Math.hypot(3,4);    //5</code></p>
+<p>如果参数不是数值，Math.hypot方法将会转化为数值，只要有一个参数无法转化为数值，就会返回NAN        </p>
 
       
     </div>

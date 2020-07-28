@@ -64,6 +64,113 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jquery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/28/jquery/" class="article-date">
+  <time datetime="2020-07-28T04:45:18.000Z" itemprop="datePublished">2020-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/28/jquery/">jquery</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>[TOC]</p>
+<h1 id="符号的释放"><a href="#符号的释放" class="headerlink" title="$符号的释放"></a>$符号的释放</h1><p>e.g. var nj=jQuery.noConflict();<br>用nj代替$</p>
+<p>$(function(){<br>    …<br>})</p>
+<p>nj(function(){<br>    …<br>})</p>
+<h1 id="jQ核心函数"><a href="#jQ核心函数" class="headerlink" title="$(); jQ核心函数"></a>$(); jQ核心函数</h1><p>1.接受函数 $(function(){});<br>作为入口函数</p>
+<p>2.接受一个字符串代码片段 $(“.box1”);<br>返回一个jQ对象，对象中保存了找到的DOM元素</p>
+<p>3.接受一个字符串代码 $(“<p>我是段落<p>“);<br>返回一个jQ对象，对象中保存了创建的DOM元素 </p>
+<p>4.接受DOM元素 $(“div”);<br>会被包装成一个jQuery对象返回</p>
+<h1 id="each方法-可以遍历伪数组"><a href="#each方法-可以遍历伪数组" class="headerlink" title="each方法  可以遍历伪数组"></a>each方法  可以遍历伪数组</h1><p>$.each(arr, function(index,value){<br>    console.log(index,value);<br>})</p>
+<p>注意：和Js的参数位置刚好相反 索引在前，值再后</p>
+<h1 id="map方法"><a href="#map方法" class="headerlink" title="map方法"></a>map方法</h1><p>$.map(obj, function(value,index){<br>    conlose.log(index,value);<br>    return value+index;<br>}) </p>
+<h1 id="两者区别："><a href="#两者区别：" class="headerlink" title="两者区别："></a>两者区别：</h1><p>each静态方法默认的返回值：当前遍历的数组<br>map静态方法默认的返回值是一个空的数组<br>each数组不支持在回调函数中对遍历的数组进行处理<br>map可以在回调函数中通过对return对遍历的数组进行处理，输出我们想要的值，然后生成一个数组返回出来</p>
+<h1 id="trim方法"><a href="#trim方法" class="headerlink" title="trim方法"></a>trim方法</h1><p>var res = $.trim(str);  可以删除字符串两端的空格<br>不会改变原字符串 需要接受新产生的字符串</p>
+<h1 id="isWindow方法"><a href="#isWindow方法" class="headerlink" title="isWindow方法"></a>isWindow方法</h1><p>作用：判断传入的对象是否是window<br>参数：需要判断的对象<br>返回值：true/false</p>
+<p>var res = $.isWindow();</p>
+<h1 id="isArray方法"><a href="#isArray方法" class="headerlink" title="isArray方法"></a>isArray方法</h1><p>作用：判断传入对象是否是真数组 伪数组是false<br>参数：需要判断的对象<br>返回值：true/false</p>
+<p>var res = $.isArray();</p>
+<h1 id="isFunction"><a href="#isFunction" class="headerlink" title="isFunction"></a>isFunction</h1><p>同上<br> ！！ var res = $.isFunction(jQuery); =&gt; true<br> 所以jq框架本质是一个函数</p>
+<h1 id="holdReady"><a href="#holdReady" class="headerlink" title="holdReady"></a>holdReady</h1><p> {所有dom元素执行完之后会执行ready函数}<br>$.holdReady(true);<br>作用：暂停ready事件(入口函数)执行</p>
+<p>$.holdReady(false);<br>作用：恢复ready事件</p>
+<h1 id="内容选择器"><a href="#内容选择器" class="headerlink" title="内容选择器"></a>内容选择器</h1><h1 id="empty"><a href="#empty" class="headerlink" title=":empty"></a>:empty</h1><p>var $div = $(“div:empty”);//找出没有子元素也没有文本内容的div;<br>console.log($div);</p>
+<h1 id="parent"><a href="#parent" class="headerlink" title=":parent"></a>:parent</h1><p>var $div = $(“div:parent);//找到有元素或者有子元素的div</p>
+<h1 id="contains-text"><a href="#contains-text" class="headerlink" title=":contains(text)"></a>:contains(text)</h1><p>var $div = $(“div:contains(‘我是div’)”);<br>首先找到所有的div 查看哪个div中含有‘我是div’的文本。是包含不是等于噢！</p>
+<h1 id="has-selector"><a href="#has-selector" class="headerlink" title=":has(selector)"></a>:has(selector)</h1><p>var $div = $(“div:has(‘span’)”);<br>首先找到所有的div 找到包含指定子元素的div。是包含不是等于噢！</p>
+<h1 id="操作属性节点"><a href="#操作属性节点" class="headerlink" title="操作属性节点"></a>操作属性节点</h1><p>1.attr()<br>作用：获取或者设置属性节点的值，新增属性节点<br>传递一个参数：获取该指定节点的值 =&gt; ！！注意，无论找到多少个元素，都只会返回第一个元素指定的属性节点的值<br>传递两个参数：设置该属性节点的值 =&gt; ！！找到多少个元素就会设置多少个元素<br>$(“span”).attr(“class”,”box”)<br>//如果传入的属性节点不存在则自动创建新的属性节点并赋值</p>
+<p>获取返回值：该属性节点的内容，没有内容是undefin    ed</p>
+<p>2.removeAttr();<br>作用：删除属性节点<br>找到多少个元素就会删除多少个元素的指定属性节点<br>删除多个属性节点：（用空格隔开即可）<br>$(“span”).removeAttr<br>(“class name abc”);<br>同时删除class、name、abc三个属性节点</p>
+<h1 id="操作属性"><a href="#操作属性" class="headerlink" title="操作属性"></a>操作属性</h1><p>1.prop<br>$(“span”).eq(0).prop(“demo”,”666”)<br>给找到的第一个span添加上demo属性</p>
+<p>获取的时候和attr()一样一个参数而且只能返回第一个<br>!! prop不仅能操作属性也能操作属性节点<br>$(“span”).prop(“class”) =&gt;也可以实现效果</p>
+<p>获取返回值：true/false</p>
+<p>2.removeProp</p>
+<h1 id="Css操作"><a href="#Css操作" class="headerlink" title="Css操作"></a>Css操作</h1><p> 1.addClass()<br> $(“div”).addClass(“class1 class2”);//可以同时添加两个类名</p>
+<p> 2.removeClass()<br> $(“div”).removeClass(“class1 class2”)//同时删除多个类名</p>
+<p> 3.toggleClass()<br> 切换类名 有就删除 没有就添加<br>  $(“div”).toggleClass(“class1 class2”)<br>我感觉这个可以做点一下有点两下没有循环这样子的东西</p>
+<h1 id="HTML操作"><a href="#HTML操作" class="headerlink" title="HTML操作"></a>HTML操作</h1><p>1.html()<br>$(“div”).html(“<p>我是段落<span>我是span</span></p>“);//可以创建html节点<br>设置html 和innerHTML作用一样</p>
+<p>2.console.log($(“div”).html());<br>获取html的值</p>
+<p>3.text()<br>$(“div”).text(“<p>我是段落<span>我是span</span></p>“)//只传入文本无法设置HTML节点</p>
+<p>4.console.log($(“div”).text());<br>获取HTML的值</p>
+<p>5.val()<br>$(“input”).val(“请输入内容”)<br>设置输入框内的值</p>
+<p>6.console.log($(“input”).val());<br>获取输入框里面的内容</p>
+<h1 id="操作样式"><a href="#操作样式" class="headerlink" title="操作样式"></a>操作样式</h1><p>1.逐个设置<br>$(“div”).css(“width”,”100px”);<br>$(“div”).css(“height”,”100px”);<br>$(“div”).css(“background”,”red”);</p>
+<p>2.链式设置（不建议太长 阅读性差<br>$(“div”).css(“width”,”100px”).css(“height”,”100px”).css(“background”,”red”);</p>
+<p>3.批量设置<br>$(“div”).css({<br>    width:”100px”;<br>    height:”100px”;<br>});</p>
+<h1 id="获取CSS样式值"><a href="#获取CSS样式值" class="headerlink" title="获取CSS样式值"></a>获取CSS样式值</h1><p>$(“div”).css(“width”);</p>
+<h1 id="尺寸操作"><a href="#尺寸操作" class="headerlink" title="尺寸操作"></a>尺寸操作</h1><p>1.获取元素宽度<br>$(“.father”).width();</p>
+<p>2.设置元素宽度<br>$(“.father”).width(“500px”);</p>
+<p>3.innerheight和outerheight的区别<br>innerheight = height +padding;<br>outerheight = height +padding + border +一定情况下的margin;</p>
+<h1 id="位置操作"><a href="#位置操作" class="headerlink" title="位置操作"></a>位置操作</h1><p>1.offset()<br>作用：获取和设置元素距离窗口的偏移位<br>$(“.son”).offset().left() =&gt;获取<br>$(“.son”).offset(<br>    {<br>        left:10<br>    }<br>) =&gt;设置</p>
+<p>2.position()<br>作用：获取元素距离定位元素的偏移位 ！！不能设置噢~ 想设置距离的话直接在JQ里面写CSS就可以了<br>$(“.son”).position().left() =&gt;获取</p>
+<h1 id="滚动条"><a href="#滚动条" class="headerlink" title="滚动条"></a>滚动条</h1><p>1.scrollTop()<br>$(“.box”).scrollTop()  =&gt;获取元素滚动条现在滚动的距离<br>$(“html”).scrollTop()+$(“body”).sbodycrollTop() =&gt;获取网页滚动的距离 实现浏览器之间的兼容<br>$(“.box”).scrollTop(300)  =&gt;设置滚动条滚动的距离<br>$(“html,body”).scrollTop(300) =&gt;设置网页的滚动距离 实现浏览器之间的兼容</p>
+<h1 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h1><ol>
+<li><pre><code>eventName(fn)
+$(&quot;button&quot;).click(function(){
+
+}) 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ！！部分JS事件不能实现（JQ有 JS没有的那种），可以绑定多个事件不会覆盖</span><br><span class="line"></span><br><span class="line">2.</span><br></pre></td></tr></table></figure>
+on(enentName,fn)
+$(&quot;button&quot;).on(&quot;click&quot;,function(){
+
+})
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ！！所有JS事件（不管JQ里面有没有，只要JS里面有就可以）都可以实现，可以绑定多个事件不会覆盖</span><br><span class="line"></span><br><span class="line"># 事件解绑</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;javascript</span><br><span class="line">$(function()&#123;</span><br><span class="line">    function test1()&#123;</span><br><span class="line">        alert(&#39;aaaa&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    function test2()&#123;</span><br><span class="line">        alert(&#39;bbbb&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">$(&quot;button&quot;).on(&quot;click&quot;,test1);</span><br><span class="line">$(&quot;button&quot;).on(&quot;click&quot;,test2);</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off();	&#x2F;&#x2F;不传参： 将button上面所有的事件全部解绑</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;);	&#x2F;&#x2F;传一个参数：把所有click事件移除</span><br><span class="line"></span><br><span class="line">$(&quot;button&quot;).off(&quot;click&quot;，text1);	&#x2F;&#x2F;传两个参数： 把指定事件移除</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ol>
+<h1 id="事件冒泡和默认行为"><a href="#事件冒泡和默认行为" class="headerlink" title="事件冒泡和默认行为"></a>事件冒泡和默认行为</h1><p>解除事件冒泡和默认行为分别有两种方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".son"</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">'son'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//	阻止事件冒泡</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="string">".son"</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123; </span><br><span class="line">    slert(<span class="string">'son'</span>);</span><br><span class="line">    event.stopPropagation();	<span class="comment">//	阻止事件冒泡</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">//记得都是写在儿子里面的</span></span><br><span class="line"></span><br><span class="line">默认事件：比如点击提交数据就会提交到远程服务器，点击链接就会跳转</span><br><span class="line"></span><br><span class="line">$(<span class="string">"a"</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">'不跳转'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//	阻止默认行为</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">$(<span class="string">"a"</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">'不跳转'</span>);</span><br><span class="line">    event.preventDefault();	<span class="comment">//	阻止默认行为</span></span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件自动触发"><a href="#事件自动触发" class="headerlink" title="事件自动触发"></a>事件自动触发</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".son"</span>.trigger(<span class="string">"click"</span>);	<span class="comment">//	自动触发son上面的click事件，冒泡事件仍然存在，也会触发默认行为</span></span><br><span class="line">  </span><br><span class="line">$(<span class="string">".son"</span>.triggerHandler(<span class="string">"click"</span>);	<span class="comment">//	自动触发son上面的click事件，冒泡事件会被阻止，不会触发默认行为</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"input[type = 'submit']"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"submit"</span>); 	<span class="comment">//	监听类型为submit的input的点击事件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="jQuery自定义事件"><a href="#jQuery自定义事件" class="headerlink" title="jQuery自定义事件"></a>jQuery自定义事件</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/28/jquery/" data-id="ckd5y479z0000vkuw71v05bl0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-grid" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/20/grid/" class="article-date">
@@ -1055,7 +1162,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-grid/" rel="tag">css-grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css-grid/" rel="tag">css-grid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a></li></ul>
     </div>
   </div>
 
@@ -1065,7 +1172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/css-grid/" style="font-size: 10px;">css-grid</a> <a href="/tags/git/" style="font-size: 10px;">git</a>
+      <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/css-grid/" style="font-size: 10px;">css-grid</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a>
     </div>
   </div>
 
@@ -1087,6 +1194,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/28/jquery/">jquery</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/20/grid/">Grid</a>
           </li>
         
@@ -1100,10 +1211,6 @@
         
           <li>
             <a href="/2020/07/13/git/">The use of git</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/13/hello-world/">Hello World</a>
           </li>
         
       </ul>

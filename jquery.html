@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[TOC] $符号的释放e.g. var nj&#x3D;jQuery.noConflict();用nj代替$ $(function(){    …}) nj(function(){    …}) $(); jQ核心函数1.接受函数 $(function(){});作为入口函数 2.接受一个字符串代码片段 $(“.box1”);返回一个jQ对象，对象中保存了找到的DOM元素 3.接受一个字符串代码 $(“">
+<meta property="og:type" content="website">
+<meta property="og:title" content="jquery">
+<meta property="og:url" content="http://example.com/jquery.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] $符号的释放e.g. var nj&#x3D;jQuery.noConflict();用nj代替$ $(function(){    …}) nj(function(){    …}) $(); jQ核心函数1.接受函数 $(function(){});作为入口函数 2.接受一个字符串代码片段 $(“.box1”);返回一个jQ对象，对象中保存了找到的DOM元素 3.接受一个字符串代码 $(“">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-28T04:45:18.000Z">
+<meta property="article:modified_time" content="2020-08-13T16:38:17.472Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="jQuery">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/jquery">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"http://example.com/jquery.html","path":"jquery.html","title":"jquery"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>jquery | Hexo
+</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E7%9A%84%E9%87%8A%E6%94%BE"><span class="nav-number">1.</span> <span class="nav-text">$符号的释放</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQ%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">$(); jQ核心函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#each%E6%96%B9%E6%B3%95-%E5%8F%AF%E4%BB%A5%E9%81%8D%E5%8E%86%E4%BC%AA%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">each方法  可以遍历伪数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">map方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E8%80%85%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">两者区别：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#trim%E6%96%B9%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">trim方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#isWindow%E6%96%B9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">isWindow方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#isArray%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">isArray方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#isFunction"><span class="nav-number">9.</span> <span class="nav-text">isFunction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#holdReady"><span class="nav-number">10.</span> <span class="nav-text">holdReady</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">11.</span> <span class="nav-text">内容选择器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#empty"><span class="nav-number">12.</span> <span class="nav-text">:empty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#parent"><span class="nav-number">13.</span> <span class="nav-text">:parent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#contains-text"><span class="nav-number">14.</span> <span class="nav-text">:contains(text)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#has-selector"><span class="nav-number">15.</span> <span class="nav-text">:has(selector)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%B1%9E%E6%80%A7%E8%8A%82%E7%82%B9"><span class="nav-number">16.</span> <span class="nav-text">操作属性节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%B1%9E%E6%80%A7"><span class="nav-number">17.</span> <span class="nav-text">操作属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Css%E6%93%8D%E4%BD%9C"><span class="nav-number">18.</span> <span class="nav-text">Css操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E6%93%8D%E4%BD%9C"><span class="nav-number">19.</span> <span class="nav-text">HTML操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%A0%B7%E5%BC%8F"><span class="nav-number">20.</span> <span class="nav-text">操作样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96CSS%E6%A0%B7%E5%BC%8F%E5%80%BC"><span class="nav-number">21.</span> <span class="nav-text">获取CSS样式值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%BA%E5%AF%B8%E6%93%8D%E4%BD%9C"><span class="nav-number">22.</span> <span class="nav-text">尺寸操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">23.</span> <span class="nav-text">位置操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E6%9D%A1"><span class="nav-number">24.</span> <span class="nav-text">滚动条</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A"><span class="nav-number">25.</span> <span class="nav-text">事件绑定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A3%E7%BB%91"><span class="nav-number">26.</span> <span class="nav-text">事件解绑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">27.</span> <span class="nav-text">事件冒泡和默认行为</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91"><span class="nav-number">28.</span> <span class="nav-text">事件自动触发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">29.</span> <span class="nav-text">jQuery自定义事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery%E4%BA%8B%E4%BB%B6%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">30.</span> <span class="nav-text">jQuery事件命名空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="nav-number">31.</span> <span class="nav-text">事件委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery%E7%A7%BB%E5%85%A5-%E7%A7%BB%E5%87%BA"><span class="nav-number">32.</span> <span class="nav-text">jQuery移入 移出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#index%EF%BC%8C-eq%EF%BC%8Csiblings"><span class="nav-number">33.</span> <span class="nav-text">index， eq，siblings</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F%E5%8A%A8%E7%94%BB"><span class="nav-number">34.</span> <span class="nav-text">显示和隐藏动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%95%E5%BC%80%E5%92%8C%E6%94%B6%E8%B5%B7%E5%8A%A8%E7%94%BB"><span class="nav-number">35.</span> <span class="nav-text">展开和收起动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%A1%E5%85%A5%E6%B7%A1%E5%87%BA"><span class="nav-number">36.</span> <span class="nav-text">淡入淡出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB"><span class="nav-number">37.</span> <span class="nav-text">自定义动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#stop-delay"><span class="nav-number">38.</span> <span class="nav-text">stop() delay()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9"><span class="nav-number">39.</span> <span class="nav-text">添加节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9"><span class="nav-number">40.</span> <span class="nav-text">删除节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E8%8A%82%E7%82%B9"><span class="nav-number">41.</span> <span class="nav-text">替换节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E8%8A%82%E7%82%B9"><span class="nav-number">42.</span> <span class="nav-text">复制节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%90%E8%8A%82%E7%82%B9"><span class="nav-number">43.</span> <span class="nav-text">子节点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%A0%B7%E5%BC%8F"><span class="nav-number">44.</span> <span class="nav-text">滚动条样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery%E5%8E%9F%E7%90%86"><span class="nav-number">45.</span> <span class="nav-text">jquery原理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner page posts-expand">
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">jquery
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <hr>
+<p>[TOC]</p>
+<h1 id="符号的释放"><a href="#符号的释放" class="headerlink" title="$符号的释放"></a>$符号的释放</h1><p>e.g. var nj=jQuery.noConflict();<br>用nj代替$</p>
+<p>$(function(){<br>    …<br>})</p>
+<p>nj(function(){<br>    …<br>})</p>
+<h1 id="jQ核心函数"><a href="#jQ核心函数" class="headerlink" title="$(); jQ核心函数"></a>$(); jQ核心函数</h1><p>1.接受函数 $(function(){});<br>作为入口函数</p>
+<p>2.接受一个字符串代码片段 $(“.box1”);<br>返回一个jQ对象，对象中保存了找到的DOM元素</p>
+<p>3.接受一个字符串代码 $(“<p>我是段落<p>“);<br>返回一个jQ对象，对象中保存了创建的DOM元素 </p>
+<p>4.接受DOM元素 $(“div”);<br>会被包装成一个jQuery对象返回</p>
+<h1 id="each方法-可以遍历伪数组"><a href="#each方法-可以遍历伪数组" class="headerlink" title="each方法  可以遍历伪数组"></a>each方法  可以遍历伪数组</h1><p>$.each(arr, function(index,value){<br>    console.log(index,value);<br>})</p>
+<p>注意：和Js的参数位置刚好相反 索引在前，值再后</p>
+<h1 id="map方法"><a href="#map方法" class="headerlink" title="map方法"></a>map方法</h1><p>$.map(obj, function(value,index){<br>    conlose.log(index,value);<br>    return value+index;<br>}) </p>
+<h1 id="两者区别："><a href="#两者区别：" class="headerlink" title="两者区别："></a>两者区别：</h1><p>each静态方法默认的返回值：当前遍历的数组<br>map静态方法默认的返回值是一个空的数组<br>each数组不支持在回调函数中对遍历的数组进行处理<br>map可以在回调函数中通过对return对遍历的数组进行处理，输出我们想要的值，然后生成一个数组返回出来</p>
+<h1 id="trim方法"><a href="#trim方法" class="headerlink" title="trim方法"></a>trim方法</h1><p>var res = $.trim(str);  可以删除字符串两端的空格<br>不会改变原字符串 需要接受新产生的字符串</p>
+<h1 id="isWindow方法"><a href="#isWindow方法" class="headerlink" title="isWindow方法"></a>isWindow方法</h1><p>作用：判断传入的对象是否是window<br>参数：需要判断的对象<br>返回值：true/false</p>
+<p>var res = $.isWindow();</p>
+<h1 id="isArray方法"><a href="#isArray方法" class="headerlink" title="isArray方法"></a>isArray方法</h1><p>作用：判断传入对象是否是真数组 伪数组是false<br>参数：需要判断的对象<br>返回值：true/false</p>
+<p>var res = $.isArray();</p>
+<h1 id="isFunction"><a href="#isFunction" class="headerlink" title="isFunction"></a>isFunction</h1><p>同上<br> ！！ var res = $.isFunction(jQuery); =&gt; true<br> 所以jq框架本质是一个函数</p>
+<h1 id="holdReady"><a href="#holdReady" class="headerlink" title="holdReady"></a>holdReady</h1><p> {所有dom元素执行完之后会执行ready函数}<br>$.holdReady(true);<br>作用：暂停ready事件(入口函数)执行</p>
+<p>$.holdReady(false);<br>作用：恢复ready事件</p>
+<h1 id="内容选择器"><a href="#内容选择器" class="headerlink" title="内容选择器"></a>内容选择器</h1><h1 id="empty"><a href="#empty" class="headerlink" title=":empty"></a>:empty</h1><p>var $div = $(“div:empty”);//找出没有子元素也没有文本内容的div;<br>console.log($div);</p>
+<h1 id="parent"><a href="#parent" class="headerlink" title=":parent"></a>:parent</h1><p>var $div = $(“div:parent);//找到有元素或者有子元素的div</p>
+<h1 id="contains-text"><a href="#contains-text" class="headerlink" title=":contains(text)"></a>:contains(text)</h1><p>var $div = $(“div:contains(‘我是div’)”);<br>首先找到所有的div 查看哪个div中含有‘我是div’的文本。是包含不是等于噢！</p>
+<h1 id="has-selector"><a href="#has-selector" class="headerlink" title=":has(selector)"></a>:has(selector)</h1><p>var $div = $(“div:has(‘span’)”);<br>首先找到所有的div 找到包含指定子元素的div。是包含不是等于噢！</p>
+<h1 id="操作属性节点"><a href="#操作属性节点" class="headerlink" title="操作属性节点"></a>操作属性节点</h1><p>1.attr()<br>作用：获取或者设置属性节点的值，新增属性节点<br>传递一个参数：获取该指定节点的值 =&gt; ！！注意，无论找到多少个元素，都只会返回第一个元素指定的属性节点的值<br>传递两个参数：设置该属性节点的值 =&gt; ！！找到多少个元素就会设置多少个元素<br>$(“span”).attr(“class”,”box”)<br>//如果传入的属性节点不存在则自动创建新的属性节点并赋值</p>
+<p>获取返回值：该属性节点的内容，没有内容是undefin    ed</p>
+<p>2.removeAttr();<br>作用：删除属性节点<br>找到多少个元素就会删除多少个元素的指定属性节点<br>删除多个属性节点：（用空格隔开即可）<br>$(“span”).removeAttr<br>(“class name abc”);<br>同时删除class、name、abc三个属性节点</p>
+<h1 id="操作属性"><a href="#操作属性" class="headerlink" title="操作属性"></a>操作属性</h1><p>1.prop<br>$(“span”).eq(0).prop(“demo”,”666”)<br>给找到的第一个span添加上demo属性</p>
+<p>获取的时候和attr()一样一个参数而且只能返回第一个<br>!! prop不仅能操作属性也能操作属性节点<br>$(“span”).prop(“class”) =&gt;也可以实现效果</p>
+<p>获取返回值：true/false</p>
+<p>2.removeProp</p>
+<h1 id="Css操作"><a href="#Css操作" class="headerlink" title="Css操作"></a>Css操作</h1><p> 1.addClass()<br> $(“div”).addClass(“class1 class2”);//可以同时添加两个类名</p>
+<p> 2.removeClass()<br> $(“div”).removeClass(“class1 class2”)//同时删除多个类名</p>
+<p> 3.toggleClass()<br> 切换类名 有就删除 没有就添加<br>  $(“div”).toggleClass(“class1 class2”)<br>我感觉这个可以做点一下有点两下没有循环这样子的东西</p>
+<h1 id="HTML操作"><a href="#HTML操作" class="headerlink" title="HTML操作"></a>HTML操作</h1><p>1.html()<br>$(“div”).html(“<p>我是段落<span>我是span</span></p>“);//可以创建html节点<br>设置html 和innerHTML作用一样</p>
+<p>2.console.log($(“div”).html());<br>获取html的值</p>
+<p>3.text()<br>$(“div”).text(“<p>我是段落<span>我是span</span></p>“)//只传入文本无法设置HTML节点</p>
+<p>4.console.log($(“div”).text());<br>获取HTML的值</p>
+<p>5.val()<br>$(“input”).val(“请输入内容”)<br>设置输入框内的值</p>
+<p>6.console.log($(“input”).val());<br>获取输入框里面的内容</p>
+<h1 id="操作样式"><a href="#操作样式" class="headerlink" title="操作样式"></a>操作样式</h1><p>1.逐个设置<br>$(“div”).css(“width”,”100px”);<br>$(“div”).css(“height”,”100px”);<br>$(“div”).css(“background”,”red”);</p>
+<p>2.链式设置（不建议太长 阅读性差<br>$(“div”).css(“width”,”100px”).css(“height”,”100px”).css(“background”,”red”);</p>
+<p>3.批量设置<br>$(“div”).css({<br>    width:”100px”;<br>    height:”100px”;<br>});</p>
+<h1 id="获取CSS样式值"><a href="#获取CSS样式值" class="headerlink" title="获取CSS样式值"></a>获取CSS样式值</h1><p>$(“div”).css(“width”);</p>
+<h1 id="尺寸操作"><a href="#尺寸操作" class="headerlink" title="尺寸操作"></a>尺寸操作</h1><p>1.获取元素宽度<br>$(“.father”).width();</p>
+<p>2.设置元素宽度<br>$(“.father”).width(“500px”);</p>
+<p>3.innerheight和outerheight的区别<br>innerheight = height +padding;<br>outerheight = height +padding + border +一定情况下的margin;</p>
+<h1 id="位置操作"><a href="#位置操作" class="headerlink" title="位置操作"></a>位置操作</h1><p>1.offset()<br>作用：获取和设置元素距离窗口的偏移位<br>$(“.son”).offset().left() =&gt;获取<br>$(“.son”).offset(<br>    {<br>        left:10<br>    }<br>) =&gt;设置</p>
+<p>2.position()<br>作用：获取元素距离定位元素的偏移位 ！！不能设置噢~ 想设置距离的话直接在JQ里面写CSS就可以了<br>$(“.son”).position().left() =&gt;获取</p>
+<h1 id="滚动条"><a href="#滚动条" class="headerlink" title="滚动条"></a>滚动条</h1><p>1.scrollTop()<br>$(“.box”).scrollTop()  =&gt;获取元素滚动条现在滚动的距离<br>$(“html”).scrollTop()+$(“body”).sbodycrollTop() =&gt;获取网页滚动的距离 实现浏览器之间的兼容<br>$(“.box”).scrollTop(300)  =&gt;设置滚动条滚动的距离<br>$(“html,body”).scrollTop(300) =&gt;设置网页的滚动距离 实现浏览器之间的兼容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//监听滚动条</span></span><br><span class="line"></span><br><span class="line">$(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> offset = $(<span class="string">&quot;html,body&quot;</span>).scrollTop();</span><br><span class="line">    <span class="comment">//获取网页滚动的偏移位</span></span><br><span class="line">    <span class="keyword">if</span>(offset &gt;= <span class="number">500</span>)&#123;</span><br><span class="line">        <span class="comment">//判断网页是否滚动到了相应的位置并执行对应的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h1><ol>
+<li><p>```<br>eventName(fn)<br>$(“button”).click(function(){</p>
+<p>}) </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ！！部分JS事件不能实现（JQ有 JS没有的那种），可以绑定多个事件不会覆盖</span><br><span class="line"></span><br><span class="line">2. ```</span><br><span class="line">   on(enentName,fn)</span><br><span class="line">   $(&quot;button&quot;).on(&quot;click&quot;,function()&#123;</span><br><span class="line">   </span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>！！所有JS事件（不管JQ里面有没有，只要JS里面有就可以）都可以实现，可以绑定多个事件不会覆盖</p>
+<p><code>one</code>：执行一次</p>
+<h1 id="事件解绑"><a href="#事件解绑" class="headerlink" title="事件解绑"></a>事件解绑</h1></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;aaaa&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">test2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">&#x27;bbbb&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).on(<span class="string">&quot;click&quot;</span>,test1);</span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).on(<span class="string">&quot;click&quot;</span>,test2);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).off();	<span class="comment">//不传参： 将button上面所有的事件全部解绑</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).off(<span class="string">&quot;click&quot;</span>);	<span class="comment">//传一个参数：把所有click事件移除</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).off(<span class="string">&quot;click&quot;</span>，text1);	<span class="comment">//传两个参数： 把指定事件移除</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件冒泡和默认行为"><a href="#事件冒泡和默认行为" class="headerlink" title="事件冒泡和默认行为"></a>事件冒泡和默认行为</h1><p>解除事件冒泡和默认行为分别有两种方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.son&quot;</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">&#x27;son&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//	阻止事件冒泡</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123; </span><br><span class="line">    slert(<span class="string">&#x27;son&#x27;</span>);</span><br><span class="line">    event.stopPropagation();	<span class="comment">//	阻止事件冒泡</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">//记得都是写在儿子里面的</span></span><br><span class="line"></span><br><span class="line">默认事件：比如点击提交数据就会提交到远程服务器，点击链接就会跳转</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;a&quot;</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">&#x27;不跳转&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;	<span class="comment">//	阻止默认行为</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;a&quot;</span>.click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    slert(<span class="string">&#x27;不跳转&#x27;</span>);</span><br><span class="line">    event.preventDefault();	<span class="comment">//	阻止默认行为</span></span><br><span class="line">&#125;))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="事件自动触发"><a href="#事件自动触发" class="headerlink" title="事件自动触发"></a>事件自动触发</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.son&quot;</span>.trigger(<span class="string">&quot;click&quot;</span>);	<span class="comment">//	自动触发son上面的click事件，冒泡事件仍然存在，也会触发默认行为</span></span><br><span class="line">  </span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>.triggerHandler(<span class="string">&quot;click&quot;</span>);	<span class="comment">//	自动触发son上面的click事件，冒泡事件会被阻止，不会触发默认行为</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;input[type = &#x27;submit&#x27;]&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">&quot;submit&quot;</span>); 	<span class="comment">//	监听类型为submit的input的点击事件</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="jQuery自定义事件"><a href="#jQuery自定义事件" class="headerlink" title="jQuery自定义事件"></a>jQuery自定义事件</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>).on(<span class="string">&quot;myClick&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">&quot;son&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//自定义事件第一步：用on绑定事件，只能用on这个绑定的方法！</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>).trigger(<span class="string">&quot;myClick&quot;</span>);</span><br><span class="line"><span class="comment">//自定义事件第二步：用trigger进行自动触发</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="jQuery事件命名空间"><a href="#jQuery事件命名空间" class="headerlink" title="jQuery事件命名空间"></a>jQuery事件命名空间</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.son&quot;</span>).on(<span class="string">&quot;click.zs&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">&quot;click1&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>).on(<span class="string">&quot;click.ls&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">&quot;click2&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// .zs和.l就是命名空间，可以区别同个相同名字的事件</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.son&quot;</span>).trigger(<span class="string">&quot;click.zs&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;button&quot;</span>).on(<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="string">&quot;ul&quot;</span>).append(<span class="string">&quot;&lt;li&gt;我是一个新增的li&lt;li&gt;&quot;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;ul&quot;</span>).delegate(<span class="string">&quot;li&quot;</span>,<span class="string">&quot;click&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="built_in">this</span>);	<span class="comment">// li</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//将li的点击事件委托给ul，这样即使在新增li也有点击事件了，不委托的话，原来的绑定事件绑定不到新增的li噢</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//找一些在入口函数之前就有的元素来监听我们动态增加的元素的事件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="jQuery移入-移出"><a href="#jQuery移入-移出" class="headerlink" title="jQuery移入 移出"></a>jQuery移入 移出</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;.father&quot;</span>).mouseover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移入&quot;</span>)；</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.father&quot;</span>).mouseout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移出&quot;</span>)；</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意：子元素的移入移出也会触发父元素的mouseover,mouseout事件</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.father&quot;</span>).mouseenter(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移入&quot;</span>)；</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.father&quot;</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移出&quot;</span>)；</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用mouseleave,mouseenter，子元素移入移出不会触发父元素的事件，推荐使用！</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.father&quot;</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移入&quot;</span>)；</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;移出&quot;</span>)；</span><br><span class="line">&#125;)	</span><br><span class="line"><span class="comment">//第一个参数：移入触发的事件，第二个参数：移除触发的事件，将mouseleave,mouseenter合成！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果只接受一个参数，则同时监听移入和移出事件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="index，-eq，siblings"><a href="#index，-eq，siblings" class="headerlink" title="index， eq，siblings"></a>index， eq，siblings</h1><p><code>$(this).index()</code>获取到该元素在兄弟中的排位</p>
+<p><code>$(&quot;.content&quot;).eq(0)</code>获取第0个元素</p>
+<p><code>$(this).siblings</code>获取到除了当前元素（this）外的其他所有兄弟元素</p>
+<h1 id="显示和隐藏动画"><a href="#显示和隐藏动画" class="headerlink" title="显示和隐藏动画"></a>显示和隐藏动画</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//显示动画</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).show(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//隐藏动画</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).hide(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//切换动画 显示变隐藏 隐藏变显示</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).toggle(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="展开和收起动画"><a href="#展开和收起动画" class="headerlink" title="展开和收起动画"></a>展开和收起动画</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//展开动画(由上往下滑下来展开)</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).slideDown(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//隐藏动画(由下往上滑下来隐藏)</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).slideUp(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//切换动画 显示变隐藏 隐藏变显示</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).mouseleave(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).slideToggle(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">       <span class="comment">//第二个参数：动画执行完毕之后执行的函数</span></span><br><span class="line">   &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="built_in">this</span>).children(<span class="string">&quot;.sub&quot;</span>)；<span class="comment">//找到this里面的sub子元素</span></span><br></pre></td></tr></table></figure>
+
+<p>CSS: <code>text-indent:2em</code>前面空出两个字的宽度</p>
+<p><code>:nth-child(n)</code>第n个数字</p>
+<p><code>:nth-child(2n)</code>  偶数标签</p>
+<p><code>:nth-child(2n-1)</code>奇数标签</p>
+<p><code>:nth-child(-n+6)</code> 负向范围，从第一个到第六个</p>
+<p><code>:nth-child(n+6)</code>正向选择，从第六个到结束</p>
+<p><code>:nth-child(-n+9)</code> <code>:nth-child(n+6)</code>第6到9个，取两者交集 </p>
+<p><code>$(this).children(&quot;.sub&quot;)</code>找到this里面的sub子元素</p>
+<h1 id="淡入淡出"><a href="#淡入淡出" class="headerlink" title="淡入淡出"></a>淡入淡出</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;div&quot;</span>).fadeIn(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//淡入完毕</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;div&quot;</span>).fadeIn(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//淡出完毕</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;div&quot;</span>).fadeToggle(<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//淡入淡出切换</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;div&quot;</span>).fadeTo(<span class="number">1000</span>,<span class="number">0.5</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//指定淡入程度 第二个参数：透明度</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;.ad&quot;</span>).stop().slideDown(<span class="number">1000</span>).fadeOut(<span class="number">1000</span>).fadeIn(<span class="number">1000</span>);	<span class="comment">//	前一个动画执行完才会执行下一个动画，比嵌套式写法可读性高很多</span></span><br><span class="line"><span class="comment">//加上stop()可以规避掉一些隐藏bug</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="自定义动画"><a href="#自定义动画" class="headerlink" title="自定义动画"></a>自定义动画</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.one&quot;</span>).animate(&#123;</span><br><span class="line">        <span class="attr">marginLeft</span>:<span class="number">500</span></span><br><span class="line">    &#125;，<span class="number">1000</span>，<span class="string">&quot;linear&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//执行完毕</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.two&quot;</span>).animate(&#123;</span><br><span class="line">        <span class="attr">marginLeft</span>:<span class="number">500</span></span><br><span class="line">    &#125;，<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//执行完毕</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个参数：想要修改的属性 可以同时修改多个属性，用逗号隔开即可 （多个属性的动画是同时进行的）</span></span><br><span class="line"><span class="comment">//第二个参数：时长</span></span><br><span class="line"><span class="comment">//第三个参数：指定动画节奏 linear swing(默认)缓冲运动(大多数参数都有这个属性 )</span></span><br><span class="line"><span class="comment">//第三or四个参数：动画结束之后执行的回调函数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//可以接受三个或者四个参数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//累加动画</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.one&quot;</span>).animate(&#123;</span><br><span class="line">        <span class="attr">width</span>:<span class="string">&quot;+=100&quot;</span>	<span class="comment">//每次点击都会进行累加</span></span><br><span class="line">    &#125;，<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//执行完毕</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//关键字动画</span></span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.three&quot;</span>).animate(&#123;</span><br><span class="line">        <span class="attr">width</span>:<span class="string">&quot;hide&quot;</span>	<span class="comment">//会进行隐藏动画</span></span><br><span class="line">        <span class="attr">height</span>:<span class="string">&quot;toggle&quot;</span>	<span class="comment">//切换</span></span><br><span class="line">    &#125;，<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//执行完毕</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="stop-delay"><a href="#stop-delay" class="headerlink" title="stop() delay()"></a>stop() delay()</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;.one&quot;</span>).animate(&#123;</span><br><span class="line">        <span class="attr">width</span>:<span class="number">500</span></span><br><span class="line">    &#125;，<span class="number">1000</span>).delay(<span class="number">2000</span>).animate(&#123;<span class="attr">height</span>:<span class="number">500</span></span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line"> <span class="comment">//delay 隔某个时间段之后再进行下一个动画</span></span><br><span class="line">    </span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).eq(<span class="number">1</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;div&quot;</span>).stop();</span><br><span class="line">&#125;)</span><br><span class="line">    <span class="comment">//立即停止div当前执行的动画，然后继续进行后续动画 </span></span><br><span class="line">    </span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).eq(<span class="number">1</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;div&quot;</span>).stop(<span class="literal">true</span>);</span><br><span class="line">&#125;)</span><br><span class="line"> <span class="comment">//立即停止div当前执行的动画和后续动画 </span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">$(<span class="string">&quot;button&quot;</span>).eq(<span class="number">1</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">&quot;div&quot;</span>).stop(<span class="literal">false</span>,<span class="literal">true</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//立即完成当前动画继续后续动画    </span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//第一个参数：是否继续后续所有动画（false或者没有则继续执行后续，true则停止执行后续动画）</span></span><br><span class="line">    <span class="comment">//第二个参数：是否马上完成完现在的动画（没有参数或者false代表立即停止当前动画，true代表立即完成当前动画）</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="添加节点"><a href="#添加节点" class="headerlink" title="添加节点"></a>添加节点</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//创建一个新的节点（直接写HTML代码即可）</span></span><br><span class="line">    <span class="keyword">var</span> $li = $(<span class="string">&quot;&lt;li&gt;新增的li&lt;li&gt;&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//四个内部方法：</span></span><br><span class="line">    </span><br><span class="line">    $(<span class="string">&quot;ul&quot;</span>).append($li);</span><br><span class="line">    <span class="comment">//将节点新增到原有节点的最后</span></span><br><span class="line">    $(<span class="string">&quot;ul&quot;</span>).prepend($li);</span><br><span class="line">    <span class="comment">//将节点新增到原有节点的最前</span></span><br><span class="line">    $li.appendTo(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">    $li.prependTo(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">    <span class="comment">//与前两个方法一样</span></span><br><span class="line">     </span><br><span class="line">    <span class="comment">//外部方法：</span></span><br><span class="line">    </span><br><span class="line">    $(<span class="string">&quot;ul&quot;</span>).after($li);</span><br><span class="line">    <span class="comment">//会把新增元素插入到ul的外部的后面，即紧跟ul后面</span></span><br><span class="line">    $(<span class="string">&quot;ul&quot;</span>).before($li);</span><br><span class="line">    <span class="comment">//会把新增元素插入到ul的外部的前面，即在ul前头</span></span><br><span class="line">    $li.insertAfter(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">    $li.insertBefore(<span class="string">&quot;ul&quot;</span>);</span><br><span class="line">    <span class="comment">//与前两个方法一样</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;button&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).remove();<span class="comment">//删除指定元素</span></span><br><span class="line">   $(<span class="string">&quot;div&quot;</span>).empty();<span class="comment">//删除指定元素的内容和子元素，但是指定元素自身并不会被删除，就是剩下一堆空标签</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="替换节点"><a href="#替换节点" class="headerlink" title="替换节点"></a>替换节点</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $h6 = $(<span class="string">&quot;&lt;h6&gt;我是标题666&lt;/h6&gt;&quot;</span>)</span><br><span class="line"></span><br><span class="line">$(<span class="string">&quot;h1&quot;</span>).replaceWith($h6);</span><br><span class="line"><span class="comment">//将h1替换成h6</span></span><br><span class="line"></span><br><span class="line">$h6.replaceAll(<span class="string">&quot;h1&quot;</span>);</span><br><span class="line"><span class="comment">//将h1替换成h6</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $li = $(<span class="string">&quot;li:first&quot;</span>).clone(<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//浅复制第一个li，仅复制元素，不会复制元素事件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> $li = $(<span class="string">&quot;li:first&quot;</span>).clone(<span class="literal">true</span>);</span><br><span class="line"><span class="comment">//深复制第一个li，复制元素和复制元素事件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="子节点"><a href="#子节点" class="headerlink" title="子节点"></a>子节点</h1><p><code>children</code>找到第一代儿子</p>
+<p><code>find</code>可以找到所有后代孙子重孙都阔以</p>
+<h1 id="滚动条样式"><a href="#滚动条样式" class="headerlink" title="滚动条样式"></a>滚动条样式</h1><p>使用插件mCustomScrollbar</p>
+<p>注意点：先插入别人的CSS和JS文件，之后再 导入我们自身的文件，便于我们操作别人的文件</p>
+<h1 id="jquery原理"><a href="#jquery原理" class="headerlink" title="jquery原理"></a>jquery原理</h1><ol>
+<li>本质是一个闭包：立即执行的函数 </li>
+<li>jQuery如何让外界访问内部定义的局部变量：<code>window.num  = num;</code>将局部变量加到全局身上</li>
+<li>为什么jQuery要给增加传一个window实参 ：方便后期压缩代码，提高查找的效率 </li>
+</ol>
+<p>原型上的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$().jquery <span class="comment">//获取jQ版本号</span></span><br><span class="line">$().selector <span class="comment">//实例默认的选择器取值，默认为空</span></span><br><span class="line">$().length<span class="comment">//默认长度，默认为0</span></span><br><span class="line">$().push<span class="comment">//给实例添加新数组</span></span><br><span class="line">$().toArray() <span class="comment">//把实例，伪数组转换为数组返回</span></span><br><span class="line">$().get() <span class="comment">//把实例，伪数组转换为数组返回</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//get方法不传参数效果和toArray一样</span></span><br><span class="line"></span><br><span class="line">arr.get(<span class="number">1</span>);<span class="comment">//正数第一个元素</span></span><br><span class="line">arr.get(-<span class="number">1</span>);<span class="comment">//倒数第一个元素</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//将伪数组转换成真数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [].slice.call(obj);</span><br><span class="line"><span class="comment">//如果slice方法中什么参数都没有传递，则会将数组中的元素放到一个新的数组中原样返回</span></span><br></pre></td></tr></table></figure>
+
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

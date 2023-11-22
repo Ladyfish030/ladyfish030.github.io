@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[TOC] 继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript">
+<meta property="og:url" content="http://example.com/2020/07/15/Javascript/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] 继承发展史 原型链： 原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。构造函数和普通函数的区别：调用区别：普通函数的调用方式：直接调用  person(); 构造函数的调用方式：需要使用new关键字来调用 new  Person(); 构造函数的函数名与类名相同： Person( ); 这">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-15T04:45:18.000Z">
+<meta property="article:modified_time" content="2020-07-17T07:00:26.213Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2020/07/15/Javascript/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2020/07/15/Javascript/","path":"2020/07/15/Javascript/","title":"Javascript"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Javascript | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="nav-number">1.</span> <span class="nav-text">继承发展史</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">原型链：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-number">1.0.2.</span> <span class="nav-text">借用构造函数：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E6%9C%89%E5%8E%9F%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.0.3.</span> <span class="nav-text">公有原型：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A3%E6%9D%AF%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.0.4.</span> <span class="nav-text">圣杯模型：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">命名空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">2.0.1.</span> <span class="nav-text">闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%9E%9A%E4%B8%BE"><span class="nav-number">3.</span> <span class="nav-text">对象枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Clone"><span class="nav-number">4.</span> <span class="nav-text">Deep Clone</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON"><span class="nav-number">6.</span> <span class="nav-text">JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD"><span class="nav-number">7.</span> <span class="nav-text">JS异步加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%8A%A0%E8%BD%BD%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">垃圾加载回收机制和内存泄漏</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/15/Javascript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Javascript | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-07-15 12:45:18" itemprop="dateCreated datePublished" datetime="2020-07-15T12:45:18+08:00">2020-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2020-07-17 15:00:26" itemprop="dateModified" datetime="2020-07-17T15:00:26+08:00">2020-07-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>[TOC]</p>
+<h2 id="继承发展史"><a href="#继承发展史" class="headerlink" title="继承发展史"></a>继承发展史</h2><blockquote>
+<h4 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h4></blockquote>
+<p>原型：是function对象的一个属性，定义了构造函数制造出的对象的公共祖先，通过该构造函数产生的对象，可以继承该原型的属性和方法，原型也是对象。<br><u>构造函数和普通函数的区别</u>：<br>调用区别：<br>普通函数的调用方式：直接调用</p>
+<p> <code>person();</code></p>
+<p>构造函数的调用方式：需要使用new关键字来调用 new </p>
+<p><code>Person();</code></p>
+<p>构造函数的函数名与类名相同：</p>
+<p><code>Person( );</code></p>
+<p>这个构造函数，Person 既是函数名，也是这个对象的类名<br>定义：</p>
+<p><code>Person.prototype = &#123;</code><br>    <code>height: 10000;</code><br>    <code>width: 1000;</code><br>    <code>carname: &quot;nn&quot;;</code><br><code>&#125;</code> </p>
+<p><strong>注意：改了整个空间</strong></p>
+<p><code>Person.prototype.height = 10000;</code></p>
+<p><strong>注意：只改了个值</strong></p>
+<p><code>Person.prototype.name = &quot;&quot;;</code></p>
+<p>则所有new出来的Person的后代全部先天带有name属性或者方法，但是可以后天进行改变。</p>
+<p>删除属性：</p>
+<p><code>delete person.name;  =&gt;true</code> </p>
+<p><strong>注意：删除不存在的属性结果也是true</strong></p>
+<p>constructor方法：</p>
+<p>作用：后代可以通过这个属性来找到他的祖先，通过constructor虽然是系统隐性自带属性但是可以手动更改</p>
+<p>prototype通过 </p>
+<p><code>__proto__</code></p>
+<p>连接后代和祖先，所以后代所带的祖先原型可以被手动更改，可以换祖先</p>
+<p><code>后代. __proto__=祖先.prototype</code></p>
+<p>原型链的连接点：prototype<br>弊端：继承太多不想要的东西，没办法进行选择<br>所有最开始的祖先都有一个自带的</p>
+<p><code>__proto__</code></p>
+<p>原型链里面有很多东西比如<code>toString;</code><br>注意：子代可以给祖先加属性，加在后代没有的属性上面，所以会直接给到祖先<br><code>son.fortune.name son</code>没有<code>fortune</code>属性，继承自他的祖先，这样写可以添加祖先的fortune属性的属性<br><code>son.fortune</code> =》相当<code>于son.fortune = son.fortune +1;</code> 给自己加了一个属性并加1</p>
+<p>创建对象方法：<br><code>var obj1 = Object.creat(原型)</code><br><code>var obj1 = Objecct.creat(obj);</code><br><code>var person = Object.creat(Person.prototype)</code><br><code>Object.creat(null)</code> =&gt;现在构造出的对象没有原型，</p>
+<p><code>__proto__</code>也没有，再人为去加<code>__proto__</code>，属性后代也是不会继承的</p>
+<blockquote>
+<h4 id="借用构造函数："><a href="#借用构造函数：" class="headerlink" title="借用构造函数："></a>借用构造函数：</h4></blockquote>
+<p>弊端：不能继承借用构造函数的原型<br>每次构造函数都要多走一个函数<br><u>call</u><br>所有的方法都可以使用call</p>
+<p>作用：将这个方法里面所有的this替换成括号内内容</p>
+<p><code>function Person(name,age)&#123;&#125;</code><br><code>Person.call(obj,&#39;Wu&#39;,300);</code> </p>
+<p>在这个<code>Person</code>里面先执行</p>
+<p><code>this==obj</code></p>
+<p>然后Wu和300作为<code>Person</code>的两个参数被传进去<br>应用：在某一个函数里面用别的函数的东西，很方便:D<br><u>apply:</u><br><code>apply(this,实参)</code><br>唯一不同：只能传一个实参，所以有多个实参的话要用数组传进去哦，比如<code>[num1,num2]</code></p>
+<blockquote>
+<h4 id="公有原型："><a href="#公有原型：" class="headerlink" title="公有原型："></a>公有原型：</h4></blockquote>
+<p>让两个函数的原型指向同一个原型<br>弊端：当往一个函数的原型添加属性的时候，另外一个函数也会增加这个属性，因为两个函数的原型现在指向了同一个空间，简单来说现在原型只有一个。</p>
+<blockquote>
+<h4 id="圣杯模型："><a href="#圣杯模型：" class="headerlink" title="圣杯模型："></a>圣杯模型：</h4></blockquote>
+<p>公有原型+原型链（一个以公有原型为原型的新构造函数，并使得我们的目标函数成为一个被这个新构造函数new出来的对象）</p>
+<p><code>var inherit = (function()&#123;</code></p>
+<p>​    <code>var F = function()&#123;&#125;;</code></p>
+<p>​    <code>return function(Target, Origin)&#123;</code></p>
+<p>​    <code>F.prototype = Origin.prototype;</code></p>
+<p>​    <code>Targrt.prototype = new F();</code></p>
+<p>​    <code>Target.prototype.constuctor = Target;</code>构造函数</p>
+<p>​    <code>Target.prototype.uber = Origin.prototype;</code>超级父级</p>
+<p><code>&#125;</code></p>
+<p><code>&#125;());</code></p>
+<p>应用到了闭包，举例：</p>
+<p>一个在构造函数里面定义的变量，当该构造函数中有一个方法{将该变量赋给这个构造函数的一个属性}；此时调用该构造函数的这个方法可以将定义在函数内部的值通过属性传了出来 =》私有化变量，这个变量是他自己的，除非设置了自己的方法，否则别人根本找不到这个变量。圣杯模型中的构造函数F()就成为了一个私有化变量。</p>
+<blockquote>
+<p>others</p>
+</blockquote>
+<ol>
+<li><p>可正常计算的范围小数点前后16位</p>
+</li>
+<li><p><code>str.charCodeAt(i) =&gt; 求出str的第i位的字符编码</code></p>
+<p>如果字符编码小于等于255则该位字节长度为1，若大于255则该位字节长度为2</p>
+<p><strong>注意：中文的逗号的占两位噢~英文的逗号占一位</strong></p>
+</li>
+<li><p>实现一个构造函数的方法连续调用，只要在每一个方法最后<code>return this</code>就可以实现链式调用模式。</p>
+<p><code>Person.sex.name.age</code></p>
+<p>————7.14</p>
+</li>
+</ol>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><blockquote>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4></blockquote>
+<p>变量私有化，不会污染到全局变量</p>
+<p><code>var init = (function()&#123;</code></p>
+<p>​    <code>var name = &#39;abc&#39;;</code></p>
+<p>​    <code>function callName()&#123;</code></p>
+<p>​    <code>console.log(name);</code></p>
+<p>​    <code>&#125;</code></p>
+<p>​    <code>return function()&#123;</code></p>
+<p>​        <code>callName();</code>                        留下一个以后可以调用的接口</p>
+<p>​        <code>&#125;</code></p>
+<p><code>&#125;())</code></p>
+<p><code>init()</code>     =&gt; abc</p>
+<h2 id="对象枚举"><a href="#对象枚举" class="headerlink" title="对象枚举"></a>对象枚举</h2><p><u>属性的表示方法：</u></p>
+<p>（1）Person.name</p>
+<p>（2）Person[‘name’] =&gt;用法更灵活，字符串进行拼接作为属性名</p>
+<blockquote>
+<p>for in循环</p>
+</blockquote>
+<p><code>for(var prop in obj)&#123;</code>            prop也可以用其他单词代替，在for in循环中每一圈prop代表一个属性名，用其他单词也是同理；</p>
+<p>​    <code>console.log(prop);</code></p>
+<p><code>console.log obj[prop];</code>           <strong>注意：prop作为一个变量，不可以使用<code>obj.prop</code>访问</strong></p>
+<p><code>&#125;</code></p>
+<blockquote>
+<p>hasOwnProperty过滤方法</p>
+</blockquote>
+<p><code>obj.hasOwnProperty(prop)</code></p>
+<p>作用：辨别该方法是不是这个对象的方法，可以排除方法的方法（也就是一级）返回true,false`</p>
+<blockquote>
+<p>in</p>
+</blockquote>
+<p>判断这个对象上面是否有该属性，一级二级多级的都算</p>
+<p><code>&#39;name&#39; in obj</code>       <strong>属性是字符串，要加单引号</strong></p>
+<blockquote>
+<p>instanceof</p>
+</blockquote>
+<p><code>A instanceof B</code> 判断A对象是不是构造函数B构造出来的（即等同于判断A的原型链上是否有B的原型）</p>
+<p><u>区别 []数组 和 {}对象 的三种方法</u>:</p>
+<p>var obj={}；  </p>
+<ol>
+<li><p>constructor</p>
+<p><code>[].constructor  =&gt;Array</code></p>
+<p><code>obj.constructor =&gt;Object</code></p>
+</li>
+<li><p>instanceof</p>
+<p><code>[] instanceof Array  =&gt;true</code></p>
+<p><code>obj instanceof Array  =&gt;false</code></p>
+</li>
+<li><p>toString</p>
+<p><code>Object.prototype.toString.call([])   =&gt; object Array</code></p>
+<p><code>Object.prototype.toString.call(obj)  =&gt; object Number</code></p>
+<p><code>Object.prototype.toString.call(123)  =&gt; object Object</code></p>
+</li>
+</ol>
+<h2 id="Deep-Clone"><a href="#Deep-Clone" class="headerlink" title="Deep Clone"></a>Deep Clone</h2><ol>
+<li><p>遍历对象    for(var prop in obj)【一般和hasOwnpropety绑定使用】</p>
+</li>
+<li><p>判断是不是原始值    typeof()</p>
+</li>
+<li><p>判断是数组还是对象     (三种方法，一般采用toString)</p>
+</li>
+<li><p>建立相应的数组或对象</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepClone</span>(<span class="params">origin, target</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> target = target || &#123;&#125;,</span><br><span class="line">	  toStr = <span class="built_in">Object</span>.prototype.toString,		<span class="comment">//简短代替</span></span><br><span class="line">	  arrStr = <span class="string">&quot;[object Array]&quot;</span>;		<span class="comment">//为了进行后期比对</span></span><br><span class="line">	 <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> origin)&#123;</span><br><span class="line">	 	<span class="keyword">if</span>(origin,hasOwnproerty(prop))&#123;</span><br><span class="line">	 		<span class="keyword">if</span>(prigin[prop] !== <span class="string">&quot;null&quot;</span> &amp;&amp; <span class="keyword">typeof</span>(origin[prop]) == <span class="string">&#x27;object&#x27;</span>)&#123;		<span class="comment">//判断不为空的引用值</span></span><br><span class="line">	 			<span class="keyword">if</span>(toStr.call(origin[prop]) == arrStr)&#123;		<span class="comment">//判断是否为数组</span></span><br><span class="line">	 				target[prop] = [];</span><br><span class="line">	 			&#125;</span><br><span class="line">	 			<span class="keyword">else</span>&#123;</span><br><span class="line">	 				target[prop] = &#123;&#125;;</span><br><span class="line">	 			&#125;</span><br><span class="line">	 			</span><br><span class="line">	 			deepClone(origin[prop],target[prop]);		<span class="comment">//递归，进行数组或对象内的克隆</span></span><br><span class="line">	 			</span><br><span class="line">	 		&#125;</span><br><span class="line">	 		<span class="keyword">else</span>&#123;		<span class="comment">//原始值</span></span><br><span class="line">	 			target[prop] = origin[prop]</span><br><span class="line">	 		&#125;</span><br><span class="line">	 	&#125;</span><br><span class="line">	 &#125;</span><br><span class="line">	 <span class="keyword">return</span> target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><p>条件判断？是:否</p>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>一种用于传输数据的格式</p>
+<p>JSON.parse();    string –&gt;  json</p>
+<p>JSON.stringify();    json –&gt;string</p>
+<h2 id="JS异步加载"><a href="#JS异步加载" class="headerlink" title="JS异步加载"></a>JS异步加载</h2><ol>
+<li><p>defer异步加载</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;tools.js&quot; defer=&quot;defer&quot;&gt;&lt;/script&gt;</code></p>
+<p>要等到dom文档全部解析完才会被执行，只有IE能用，也可以将代码写到内部</p>
+</li>
+<li><p>aysnc异步加载</p>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;tools.js&quot; aysnc=&quot;aysnc&quot;&gt;&lt;/script&gt;</code></p>
+<p>加载完就执行，aysnc只能加载外部脚本，不能把js写在script标签里面，IE9及以上</p>
+</li>
+<li><p>创建script,插入到DOM中，加载完毕之后callBack</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span>(<span class="params">url，callback</span>)</span>&#123;		<span class="comment">//按需加载</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> script = <span class="built_in">document</span>.creatElement(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">	script.type = <span class="string">&quot;text/javascript&quot;</span>;		<span class="comment">//下载需要时间，并不能马上用引入的JS中的方法，还没下载完呢</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(script.readyState)&#123;		<span class="comment">//存在状态码的时候</span></span><br><span class="line">    script.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//IE 监听状态码是否改变</span></span><br><span class="line">    <span class="keyword">if</span>(script.readyState == <span class="string">&quot;complete&quot;</span> || script.readyState == <span class="string">&quot;loaded&quot;</span>)&#123;</span><br><span class="line">        callback();		<span class="comment">//当状态码发生改变，从loading变成complete或loaded时，script下载完成，可以执行别的内容了</span></span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    script.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;		<span class="comment">//Safari chrome firefox opera</span></span><br><span class="line">    		callback();		<span class="comment">//当script 确保下载完再进行执行</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">    script.src = url;			<span class="comment">//传进来的url带双引号，放在尾部可以防止状态码改变事件不被触发</span></span><br><span class="line">	<span class="built_in">document</span>.head.appendChild(script);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//引用的话需要用匿名函数</span></span><br><span class="line">loadScript(<span class="string">&#x27;demo.js&#x27;</span>,text());<span class="comment">//报错，因为未解析JS文件呢，哪能识别到JS里面的text是啥</span></span><br><span class="line">loadScript(<span class="string">&#x27;demo.js&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//使用匿名函数，函数体内部只有当被执行的时候才会被读取，就是要用到他的时候才去识别他</span></span><br><span class="line">    text();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>JS加载时间线</p>
+</blockquote>
+<p>   ​        1.创建Document对象，开始解析web页面，解析HTML元素和他们的文本内容后添加Element对象和Text节点到文档中。这个阶段<code>Documen.readyState = &quot;loading&quot;。</code></p>
+<p>   ​        2.遇到link外部css，创建线程加载，并继续解析文档。</p>
+<p>   ​        3.遇到script外部js，并且没有设置<code>async</code> ， <code>defer</code> ，浏览器加载，并阻塞，等待js加载完成并执行该脚本，然后继续解析文档</p>
+<p>   ​        4.遇到script外部js，并且设置有<code>async</code>，<code>defer</code> 浏览器创建线程加载，并继续解析文档，对于<code>async</code>属性的脚本，脚本加载完成后立即执行（异步禁止使用<code>docuemnt.write（）</code>）。<!--把document.write()中的内容作为HTML格式输出到网页中，当全部加载完或者在异步加载使用这个方法的时候要非常注意，它会把之前的文档流全部清空--></p>
+<p>   ​        5.遇到img标签等，先正常解析dom结构，然后浏览器异步加载src，并继续解析文档</p>
+<p>   ​        6.当文档解析完成，<code>document.readyState = &quot;interactive&quot;；</code></p>
+<p>   ​        7.文档解析完成后，所有设置有defer的脚本会按照顺序执行。注意和async的不同，但同样禁止<code>document.write()</code></p>
+<p>   ​        8..当文档解析完成之后，document对象触发DOM<code>ContentLoaded</code>事件，这也标志着程序执行从同步脚本执行阶段，转化为事件驱动阶段</p>
+<p>   ​        9.当所有<code>saync</code>的脚本加载完成并执行后，img等加载完成后，<code>document.readyState = &quot;complete&quot;</code> window对象触发load事件</p>
+<p>   ​        10.从此，页面以异步响应方式处理用户输入，网络事件等。</p>
+<p>   <code>window.onload</code>                    //当页面全部加载完才执行</p>
+<p>   <code>document.addEventListener(&#39;DOMContent&#39;,function()&#123;</code></p>
+<p>   <code>&#125;,false)</code>                            //dom解析完就执行的部分</p>
+<h2 id="垃圾加载回收机制和内存泄漏"><a href="#垃圾加载回收机制和内存泄漏" class="headerlink" title="垃圾加载回收机制和内存泄漏"></a>垃圾加载回收机制和内存泄漏</h2><p>垃圾加载回收机制Garbage Collection：执行环境负责管理代码执行过程中使用的内粗，垃圾收集器会定期找出那些不再继续使用的变量，然后释放内存。</p>
+<p>内存泄漏：不再用到的内存，没有及时释放</p>
+<blockquote>
+<p>垃圾回收策略</p>
+</blockquote>
+<p>标记清除：对脱离作用域的变量进行回收，当进入作用域时，进行标记，离开作用域的时候，标记并回收这些变量。各大浏览器实现的都是标记清除的垃圾回收策略或者类似的策略，但是垃圾收集的时间间隔互不相同。</p>
+<p>引用计数：跟踪记录每个值被引用的次数，被引用一次则加1，当这个引用计数为0时，被视为准备回收的对象，每过一段时间开始垃圾回收的时候，就把被引用数为0的变量回收。这种方法很容易引起内存泄漏，如即使两个对象都离开了作用域，但是只要它们的引用次数不是0，它们还会继续存在。</p>
+<blockquote>
+<p>常见内存泄漏的原因</p>
+</blockquote>
+<ol>
+<li>全局变量引起的内存泄漏</li>
+<li>闭包引起的内存泄漏</li>
+<li>dom清空或者删除时，时间未清除导致的内存泄漏</li>
+<li>循环引起的内存泄漏</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/13/git/" rel="prev" title="The use of git">
+                  <i class="fa fa-angle-left"></i> The use of git
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/16/ES6/" rel="next" title="ES6">
+                  ES6 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

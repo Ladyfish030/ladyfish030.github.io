@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Application &gt; Manifest :sunflower:作用： 当你希望用户能够将该引用程序添加到Mac OS上的“应用程序”文件夹、Windows上的“开始”菜单以及Android和IOS上的主屏幕时，需要一个Web应用程序清单。设置应用程序清单后，可以打开devtools中的Manifest中检验配置是否正确。 :sunflower:编写Web应用程序清单： 清单文件可采用任">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrome-devtools &gt; Application">
+<meta property="og:url" content="http://example.com/2023/11/22/chrome-devtools/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Application &gt; Manifest :sunflower:作用： 当你希望用户能够将该引用程序添加到Mac OS上的“应用程序”文件夹、Windows上的“开始”菜单以及Android和IOS上的主屏幕时，需要一个Web应用程序清单。设置应用程序清单后，可以打开devtools中的Manifest中检验配置是否正确。 :sunflower:编写Web应用程序清单： 清单文件可采用任">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wd.imgix.net/image/NJdAV9UgKuN8AhoaPBquL7giZQo1/t2qbshH5F1g24IcsNbZz.png?auto=format">
+<meta property="og:image" content="https://wd.imgix.net/image/NJdAV9UgKuN8AhoaPBquL7giZQo1/TATykdak02rXVcKINPJ5.png?auto=format">
+<meta property="article:published_time" content="2023-11-22T04:45:18.000Z">
+<meta property="article:modified_time" content="2023-11-22T07:26:17.698Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="devtools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wd.imgix.net/image/NJdAV9UgKuN8AhoaPBquL7giZQo1/t2qbshH5F1g24IcsNbZz.png?auto=format">
+
+
+<link rel="canonical" href="http://example.com/2023/11/22/chrome-devtools/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2023/11/22/chrome-devtools/","path":"2023/11/22/chrome-devtools/","title":"chrome-devtools > Application"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>chrome-devtools > Application | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-gt-Manifest"><span class="nav-number">1.</span> <span class="nav-text">Application &gt; Manifest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-gt-Service-Worker"><span class="nav-number">2.</span> <span class="nav-text">Application &gt; Service Worker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-gt-LocalStorage"><span class="nav-number">3.</span> <span class="nav-text">Application &gt; LocalStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#hatched-chick-%E4%BA%BA%E5%B7%A5%E8%AE%BE%E7%BD%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">:hatched_chick:人工设置过期时间</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#hatched-chick-%E5%AD%98%E5%8F%96%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">:hatched_chick:存取格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#hatched-chick-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">:hatched_chick:增删改查</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-gt-SessionStorage"><span class="nav-number">4.</span> <span class="nav-text">Application &gt; SessionStorage</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ant-%E5%AD%98%E5%8F%96%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">:ant:存取格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ant-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">:ant:增删改查</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-gt-IndexDB-amp-WebSql"><span class="nav-number">5.</span> <span class="nav-text">Application &gt; IndexDB&amp;WebSql</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/22/chrome-devtools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="chrome-devtools > Application | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          chrome-devtools > Application
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-11-22 12:45:18 / Modified: 15:26:17" itemprop="dateCreated datePublished" datetime="2023-11-22T12:45:18+08:00">2023-11-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Application-gt-Manifest"><a href="#Application-gt-Manifest" class="headerlink" title="Application &gt; Manifest"></a>Application &gt; Manifest</h3><p><img src="https://wd.imgix.net/image/NJdAV9UgKuN8AhoaPBquL7giZQo1/t2qbshH5F1g24IcsNbZz.png?auto=format" alt="清单窗格。"></p>
+<p>:sunflower:作用：</p>
+<p>当你希望用户能够将该引用程序添加到Mac OS上的“应用程序”文件夹、Windows上的“开始”菜单以及Android和IOS上的主屏幕时，需要一个Web应用程序清单。设置应用程序清单后，可以打开devtools中的Manifest中检验配置是否正确。</p>
+<p>:sunflower:编写Web应用程序清单：</p>
+<p>清单文件可采用任何名称，但通常命名为 <code>manifest.json</code>，并从根目录（网站的顶级目录）提供。该规范建议该扩展项应为 <code>.webmanifest</code>，但浏览器也支持 <code>.json</code> 扩展项。</p>
+<p>创建清单后，将 <code>&lt;link&gt;</code> 标记添加到渐进式 Web 应用的所有页面。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;manifest&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/manifest.json&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>具体的Manifest编写规则和配置项如下：<a target="_blank" rel="noopener" href="https://web.dev/articles/add-manifest?hl=zh-cn">https://web.dev/articles/add-manifest?hl=zh-cn</a></p>
+<h3 id="Application-gt-Service-Worker"><a href="#Application-gt-Service-Worker" class="headerlink" title="Application &gt; Service Worker"></a>Application &gt; Service Worker</h3><p><img src="https://wd.imgix.net/image/NJdAV9UgKuN8AhoaPBquL7giZQo1/TATykdak02rXVcKINPJ5.png?auto=format" alt="Service Worker 窗格。"></p>
+<p>在该位置我们对Service Worker进行检查和调试</p>
+<p>:sunflower:Service Worker ：</p>
+<p>本质上充当位于 Web 应用程序、浏览器和网络（如果可用）之间的代理服务器。除其他外，它们的目的是创建有效的离线体验、拦截网络请求并根据网络是否可用采取适当的操作，以及更新服务器上的资产。它们还允许访问推送通知和后台同步 API。</p>
+<p>:sunflower:特性：</p>
+<ol>
+<li>没有DOM访问权限</li>
+<li>无法动态导入JS模块，如果在Service Worker全局范围内调用<code>import().</code>则会抛出异常，但允许使用<code>import</code>语句进行静态导入</li>
+<li>Service Worker被设计为完全异步，在与主JavaScript不同的线程上运行，因此它是非阻塞的，所以同步XHR和Web Storage等API无法在Service Worker内部进行使用</li>
+<li>仅允许通过HTTPS运行</li>
+</ol>
+<p>具体编写Service Worker参考如下：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API</a></p>
+<h3 id="Application-gt-LocalStorage"><a href="#Application-gt-LocalStorage" class="headerlink" title="Application &gt; LocalStorage"></a>Application &gt; LocalStorage</h3><p>localStorage 用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去删除。</p>
+<p><strong>:hatched_chick:localStorage 的优势</strong></p>
+<ul>
+<li> 1、localStorage 拓展了 cookie 的 4K 限制。</li>
+<li> 2、localStorage 会可以将第一次请求的数据直接存储到本地，这个相当于一个 5M 大小的针对于前端页面的数据库，相比于 cookie 可以节约带宽，但是这个却是只有在高版本的浏览器中才支持的。</li>
+</ul>
+<p><strong>:hatched_chick:localStorage 的局限</strong></p>
+<ul>
+<li> 1、浏览器的大小不统一，并且在 IE8 以上的 IE 版本才支持 localStorage 这个属性。</li>
+<li> 2、目前所有的浏览器中都会把localStorage的值类型限定为string类型，这个在对我们日常比较常见的JSON对象类型需要一些转换。</li>
+<li> 3、localStorage在浏览器的隐私模式下面是不可读取的。</li>
+<li> 4、localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡。</li>
+<li> 5、localStorage不能被爬虫抓取到。</li>
+</ul>
+<p>localStorage 与 sessionStorage 的唯一一点区别就是 localStorage 属于永久性存储，而 sessionStorage 属于当会话结束的时候，sessionStorage 中的键值对会被清空。</p>
+<p><strong>:japanese_ogre:不可以设置过期时间不可以设置过期时间，但是开发者可以自己判断时间然后把它移除，但是它本身是没有设置过期时间的这个操作的</strong></p>
+<h6 id="hatched-chick-人工设置过期时间"><a href="#hatched-chick-人工设置过期时间" class="headerlink" title=":hatched_chick:人工设置过期时间"></a><strong>:hatched_chick:人工设置过期时间</strong></h6><p>其实都是set方法多传个过期时间啦</p>
+<ol>
+<li><p>ES5扩展Storage</p>
+<p>思路很简单，存储的值加一个时间戳，下次取值时验证时间戳。<br><strong>注意：</strong> <code>localStorage</code>只能存储字符，存入时将对象转为<code>json</code>字符串,读取时也要解析</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Storage.prototype.setExpire = <span class="function">(<span class="params">key, value, expire</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> obj = &#123;</span><br><span class="line">	<span class="attr">data</span>: value,</span><br><span class="line">	<span class="attr">time</span>: <span class="built_in">Date</span>.now(),</span><br><span class="line">	<span class="attr">expire</span>: expire</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">//localStorage 设置的值不能为对象,转为json字符串</span></span><br><span class="line">	<span class="built_in">localStorage</span>.setItem(key, <span class="built_in">JSON</span>.stringify(obj));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Storage.prototype.getExpire = <span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> val = <span class="built_in">localStorage</span>.getItem(key);</span><br><span class="line">    <span class="keyword">if</span> (!val) &#123;</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">    val = <span class="built_in">JSON</span>.parse(val);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - val.time &gt; val.expire) &#123;</span><br><span class="line">        <span class="built_in">localStorage</span>.removeItem(key);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> val.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>ES6拓展Storage</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Storage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">constructor</span>(<span class="params">props</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.props = props || &#123;&#125;</span><br><span class="line">        <span class="built_in">this</span>.source = <span class="built_in">this</span>.props.source || <span class="built_in">window</span>.localStorage</span><br><span class="line">        <span class="built_in">this</span>.initRun();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">initRun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * set 存储方法</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125;     key 键</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125;     value 值，存储的值可能是数组/对象，不能直接存储，需要转换 JSON.stringify</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125;     expired 过期时间，以分钟为单位</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">const</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">&quot;__expires__&quot;</span>);</span><br><span class="line">        <span class="keyword">let</span> data = <span class="built_in">this</span>.source;</span><br><span class="line">        <span class="keyword">let</span> list = <span class="built_in">Object</span>.keys(data);</span><br><span class="line">        <span class="keyword">if</span>(list.length &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            list.map(<span class="function">(<span class="params">key,v</span>)=&gt;</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>( !reg.test(key ))&#123;</span><br><span class="line">                    <span class="keyword">let</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">                    <span class="keyword">let</span> expires = data[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>]||<span class="built_in">Date</span>.now+<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (now &gt;= expires ) &#123;</span><br><span class="line">                        <span class="built_in">this</span>.remove(key);</span><br><span class="line">                    &#125;;</span><br><span class="line">                &#125;;</span><br><span class="line">                <span class="keyword">return</span> key;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">set</span>(<span class="params">key, value, expired</span>)</span> &#123;</span><br><span class="line">	    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	    * set 存储方法</span></span><br><span class="line"><span class="comment">	    * @ param &#123;String&#125;     key 键</span></span><br><span class="line"><span class="comment">	    * @ param &#123;String&#125;     value 值，</span></span><br><span class="line"><span class="comment">	    * @ param &#123;String&#125;     expired 过期时间，以毫秒为单位，非必须</span></span><br><span class="line"><span class="comment">	    */</span></span><br><span class="line">	    <span class="keyword">let</span> source = <span class="built_in">this</span>.source;</span><br><span class="line">	    source[key] = <span class="built_in">JSON</span>.stringify(value);</span><br><span class="line">	    <span class="keyword">if</span> (expired)&#123;</span><br><span class="line">	        source[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>] = <span class="built_in">Date</span>.now() + expired</span><br><span class="line">	    &#125;;</span><br><span class="line">	    <span class="keyword">return</span> value;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="title">get</span>(<span class="params">key</span>)</span> &#123;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        * get 获取方法</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125;     key 键</span></span><br><span class="line"><span class="comment">        * @ param &#123;String&#125;     expired 存储时为非必须字段，所以有可能取不到，默认为 Date.now+1</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="keyword">const</span> source = <span class="built_in">this</span>.source,</span><br><span class="line">        expired = source[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>]||<span class="built_in">Date</span>.now+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">const</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> ( now &gt;= expired ) &#123;</span><br><span class="line">            <span class="built_in">this</span>.remove(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> value = source[key] ? <span class="built_in">JSON</span>.parse(source[key]) : source[key];</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">remove</span>(<span class="params">key</span>)</span> &#123;</span><br><span class="line">	    <span class="keyword">const</span> data = <span class="built_in">this</span>.source,</span><br><span class="line">	        value = data[key];</span><br><span class="line">	    <span class="keyword">delete</span> data[key];</span><br><span class="line">	    <span class="keyword">delete</span> data[<span class="string">`<span class="subst">$&#123;key&#125;</span>__expires__`</span>];</span><br><span class="line">	    <span class="keyword">return</span> value;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h6 id="hatched-chick-存取格式"><a href="#hatched-chick-存取格式" class="headerlink" title=":hatched_chick:存取格式"></a><strong>:hatched_chick:存取格式</strong></h6><p>localStorage 只支持 string 类型的存储，存入数字取出来的类型也是字符串</p>
+<p>需要存入对象时先使用Json.stringify转换为json字符串，取出之后再转换为对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage=<span class="built_in">window</span>.localStorage;</span><br><span class="line"><span class="keyword">var</span> data=&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;xiecanyong&#x27;</span>,</span><br><span class="line">    <span class="attr">sex</span>:<span class="string">&#x27;man&#x27;</span>,</span><br><span class="line">    <span class="attr">hobby</span>:<span class="string">&#x27;program&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> d=<span class="built_in">JSON</span>.stringify(data);</span><br><span class="line">storage.setItem(<span class="string">&quot;data&quot;</span>,d);</span><br><span class="line"><span class="comment">//将JSON字符串转换成为JSON对象输出</span></span><br><span class="line"><span class="keyword">var</span> json=storage.getItem(<span class="string">&quot;data&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> jsonObj=<span class="built_in">JSON</span>.parse(json);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> jsonObj);</span><br></pre></td></tr></table></figure>
+
+<h6 id="hatched-chick-增删改查"><a href="#hatched-chick-增删改查" class="headerlink" title=":hatched_chick:增删改查"></a><strong>:hatched_chick:增删改查</strong></h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">localStorage</span>.setItem(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> lastname = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;key&quot;</span>);</span><br><span class="line"><span class="built_in">localStorage</span>.removeItem(<span class="string">&quot;key&quot;</span>);<span class="comment">//删除某个键值对</span></span><br><span class="line"><span class="built_in">localStorage</span>.clear()<span class="comment">//删除所有localStorage</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Application-gt-SessionStorage"><a href="#Application-gt-SessionStorage" class="headerlink" title="Application &gt; SessionStorage"></a>Application &gt; SessionStorage</h3><p>sessionStorage 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。</p>
+<h6 id="ant-存取格式"><a href="#ant-存取格式" class="headerlink" title=":ant:存取格式"></a><strong>:ant:存取格式</strong></h6><p>和localStorage相同</p>
+<h6 id="ant-增删改查"><a href="#ant-增删改查" class="headerlink" title=":ant:增删改查"></a><strong>:ant:增删改查</strong></h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sessionStorage.setItem(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> lastname = sessionStorage.getItem(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">sessionStorage.removeItem(<span class="string">&quot;key&quot;</span>);</span><br><span class="line">sessionStorage.clear();</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Application-gt-IndexDB-amp-WebSql"><a href="#Application-gt-IndexDB-amp-WebSql" class="headerlink" title="Application &gt; IndexDB&amp;WebSql"></a>Application &gt; IndexDB&amp;WebSql</h3><p>这两者主要用在前端有大容量存储的页面上，例如，在线编辑浏览器或者网页邮箱</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>介绍</th>
+<th>容量</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WebSql</td>
+<td>关系型数据库</td>
+<td>大小限制因浏览器而异，但<strong>一般为5MB-50MB的范围</strong></td>
+<td>被W3C标准废弃</td>
+</tr>
+<tr>
+<td>IndexDB</td>
+<td>非关系型数据库</td>
+<td><strong>存储大小是250m以上</strong>（受计算机硬件和浏览器厂商的限制）</td>
+<td>正常使用</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/devtools/" rel="tag"># devtools</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/25/try/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

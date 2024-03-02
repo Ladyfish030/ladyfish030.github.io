@@ -112,12 +112,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -134,6 +134,128 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/02/valueOf&toString/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ladyfish">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/02/valueOf&toString/" class="post-title-link" itemprop="url">在你不知道的地方JS偷偷调用了valueOf和toString！</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-03-02 20:34:43 / Modified: 20:56:04" itemprop="dateCreated datePublished" datetime="2024-03-02T20:34:43+08:00">2024-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>JavaScript中valueOf、toString的隐式调用</p>
+<p>在你不知道的地方JS偷偷调用了valueOf和toString！</p>
+<h3 id="一、问题引入"><a href="#一、问题引入" class="headerlink" title="一、问题引入"></a>一、问题引入</h3><p>你知道执行以下三种情况，控制台会打印什么吗？</p>
+<h4 id="（1）情况一：方法的返回值为1"><a href="#（1）情况一：方法的返回值为1" class="headerlink" title="（1）情况一：方法的返回值为1"></a>（1）情况一：方法的返回值为1</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br><span class="line"><span class="built_in">console</span>.log(fn)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + arr)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + fn)</span><br></pre></td></tr></table></figure>
+
+<h4 id="（2）情况二：方法无返回值"><a href="#（2）情况二：方法无返回值" class="headerlink" title="（2）情况二：方法无返回值"></a>（2）情况二：方法无返回值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br><span class="line"><span class="built_in">console</span>.log(fn)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + arr)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + fn)</span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）情况三：方法返回值为一个匿名函数"><a href="#（3）情况三：方法返回值为一个匿名函数" class="headerlink" title="（3）情况三：方法返回值为一个匿名函数"></a>（3）情况三：方法返回值为一个匿名函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br><span class="line"><span class="built_in">console</span>.log(fn)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + arr)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + fn)</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出如下，你答对了吗？</p>
+<h4 id="控制台输出结果："><a href="#控制台输出结果：" class="headerlink" title="控制台输出结果："></a>控制台输出结果：</h4><p><img src="D:\hexo\myblog\source\image\image-20220809115757055.png" alt="image-20220809115757055.png"></p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809115923874.png" alt="image-20220809115923874"></p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809115959212.png" alt="image-20220809115757055.png"></p>
+<p>全对的大佬可以出门左转了，出现错误的同学请继续往下看~</p>
+<h3 id="二、具体情况分析"><a href="#二、具体情况分析" class="headerlink" title="二、具体情况分析"></a>二、具体情况分析</h3><p>针对直接使用cosole.log打印单独的对象，打印语句一在三种情况下都发挥正常。但是往下看，打印语句二<code>console.log(fn)</code></p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809121806237.png" alt="image-20220809121806237"></p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809121817987.png" alt="image-20220809121817987"></p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809121828969.png" alt="image-20220809121828969"></p>
+<ul>
+<li>  方法返回值为1：打印函数体，自动调用toString()</li>
+<li>  方法无返回值(undefined)：打印函数体，自动调用toString()</li>
+<li>  方法返回匿名函数：打印函数体，自动调用toString()之后调用valueOf()</li>
+</ul>
+<p>从上面的结果中我们猜测，当打印的内容为函数时，会在内部隐式调用toString()，如果toString()返回基本数据类型，则数据转换到此为止。如果返回对象数据类型，则在toString()之后还会调用valueOf()。</p>
+<p>打印语句3和4：</p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809121901299.png" alt="image-20220809121901299"><img src="D:\hexo\myblog\source\image\image-20220809121914502.png" alt="image-20220809121914502"><img src="D:\hexo\myblog\source\image\image-20220809121925724.png" alt="image-20220809121925724"></p>
+<ul>
+<li>  方法返回值为1：自动调用valueOf()，打印valueOf()返回值</li>
+<li>  方法无返回值(undefined)：自动调用valueOf()，打印valueOf()返回值</li>
+<li>  方法返回匿名函数：自动调用valueOf()之后调用toString()，报错</li>
+</ul>
+<p>有报错最好~从报的错误开始入手</p>
+<p>TypeError: Cannot convert object to primitive value</p>
+<p>翻译：不能将对象转换为原始值<br>查阅资料发现引用类型向原始类型转换遵循ToPrimitive规则</p>
+<h4 id="⭐️ToPrimitive规则"><a href="#⭐️ToPrimitive规则" class="headerlink" title="⭐️ToPrimitive规则"></a>⭐️ToPrimitive规则</h4><p>是引用类型向原始类型转变的规则，它遵循先valueOf后toString的模式期望得到一个原始类型。如果还是没法得到一个原始类型，就会抛出 TypeError。</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><h4 id="1-明确转换类型："><a href="#1-明确转换类型：" class="headerlink" title="1.明确转换类型："></a>1.明确转换类型：</h4><p>如alert，console.log明确引用类型是要转换为字符串类型，那么采用的策略是先toString后valueOf。</p>
+<h4 id="2-不明确转换类型："><a href="#2-不明确转换类型：" class="headerlink" title="2.不明确转换类型："></a>2.不明确转换类型：</h4><p>如隐式类型转换，那么采用ToPrimitive规则，遵循先valueOf后toString的模式期望得到一个原始类型。</p>
+<h4 id="MDN中valueOf-方法的返回值："><a href="#MDN中valueOf-方法的返回值：" class="headerlink" title="MDN中valueOf()方法的返回值："></a>MDN中valueOf()方法的返回值：</h4><p><img src="D:\hexo\myblog\source\image\image-20220809110411560.png" alt="image-20220809110411560"></p>
+<h4 id="toString方法返回值"><a href="#toString方法返回值" class="headerlink" title="toString方法返回值"></a>toString方法返回值</h4><p><img src="D:\hexo\myblog\source\image\20190719180630686.png" alt="20190719180630686"></p>
+<h4 id="3-返回值："><a href="#3-返回值：" class="headerlink" title="3.返回值："></a>3.返回值：</h4><p>在复写这两个函数时，函数返回值起着关键作用，可以决定调用几个方法和最后函数的返回值。好好利用这一特点与隐式自动调用的模式，助力成为装逼达人！</p>
+<h4 id="4-注意点："><a href="#4-注意点：" class="headerlink" title="4.注意点："></a>4.注意点：</h4><p>alert会将两个方法最后得到的原始类型值进行返回</p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809113133100.png" alt="image-20220809113133100"><br>但是console.log不会，还是返回函数体。</p>
+<p>其他引用类型类似，可以自己动手试试。</p>
+<h3 id="四、问题"><a href="#四、问题" class="headerlink" title="四、问题"></a>四、问题</h3><p>对于console.log这个操作不太理解，使用alert阻塞。可以看到先提示调用方法，但是确认完alert弹窗之后，居然console.log打印语句出现在了上面。实在是不理解，希望有懂的大佬不吝赐教。</p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809153623938.png" alt="image-20220809153623938"> <img src="C:\Users\吴佳愉\AppData\Roaming\Typora\typora-user-images\image-20220809153646505.png" alt="image-20220809153646505"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="built_in">console</span>.log(fn);</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、踩坑心得"><a href="#五、踩坑心得" class="headerlink" title="五、踩坑心得"></a>五、踩坑心得</h3><p>事情是这样的，学习的时候看到一篇文章，对照着文章中的进行实践操作却得不到一样的结果，于是顺藤摸瓜摸出了这么多瓜。。。从柯里化到隐式调用到隐式类型转换。</p>
+<p><img src="D:\hexo\myblog\source\image\image-20220809094045150.png" alt="image-20220809094045150"></p>
+<h3 id="六、参考："><a href="#六、参考：" class="headerlink" title="六、参考："></a>六、参考：</h3><ul>
+<li>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/aNd1coder/archive/2013/03/09/2951959.html">https://www.cnblogs.com/aNd1coder/archive/2013/03/09/2951959.html</a></li>
+<li>  <a target="_blank" rel="noopener" href="https://www.jb51.net/article/32327.htm">https://www.jb51.net/article/32327.htm</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1576,110 +1698,6 @@
 <p>原型上的属性：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$().jquery <span class="comment">//获取jQ版本号</span></span><br><span class="line">$().selector <span class="comment">//实例默认的选择器取值，默认为空</span></span><br><span class="line">$().length<span class="comment">//默认长度，默认为0</span></span><br><span class="line">$().push<span class="comment">//给实例添加新数组</span></span><br><span class="line">$().toArray() <span class="comment">//把实例，伪数组转换为数组返回</span></span><br><span class="line">$().get() <span class="comment">//把实例，伪数组转换为数组返回</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//get方法不传参数效果和toArray一样</span></span><br><span class="line"></span><br><span class="line">arr.get(<span class="number">1</span>);<span class="comment">//正数第一个元素</span></span><br><span class="line">arr.get(-<span class="number">1</span>);<span class="comment">//倒数第一个元素</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//将伪数组转换成真数组</span></span><br><span class="line"><span class="keyword">var</span> arr = [].slice.call(obj);</span><br><span class="line"><span class="comment">//如果slice方法中什么参数都没有传递，则会将数组中的元素放到一个新的数组中原样返回</span></span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/20/grid/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ladyfish">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Hexo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/07/20/grid/" class="post-title-link" itemprop="url">Grid</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2020-07-20 12:45:18 / Modified: 11:36:54" itemprop="dateCreated datePublished" datetime="2020-07-20T12:45:18+08:00">2020-07-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>二维布局方式，可以同时控制行和列的分布和对齐方式。只需在外层容器添加<code>display: grid;</code>即可开启</p>
-<blockquote>
-<p>grid-template-columns</p>
-</blockquote>
-<p>固定宽度：<code>grid-template-columns: 100px 100px 100px;</code>    将容器分为3列，每一列的宽度为100px</p>
-<p>浮动宽度：<code>grid-template-columns: 1fr 1fr 1fr;</code>    将容器分为3列，每一列的宽度为1/3</p>
-<p>​                   <code>grid-template-columns: 1fr 2fr 1fr;</code>    将容器分为3列，宽度为1/4,2/4,1/4</p>
-<blockquote>
-<p>column-gap和row-gap</p>
-</blockquote>
-<p><code>column-gap: 12px;</code>    列间距为12px</p>
-<p><code>row-gap: 24px;</code>    行间距为24px</p>
-<p><code>gap: 24px;</code>    统一设置行间距和列间距都为24px</p>
-<blockquote>
-<p>grid-template-areas</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layout&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span>头部<span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aside</span>&gt;</span>侧边栏<span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">main</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span>底部<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layout</span>&#123;</span><br><span class="line">    grid-template-areas:</span><br><span class="line">	<span class="string">&quot;header header header&quot;</span></span><br><span class="line">	<span class="string">&quot;sidebar content content&quot;</span></span><br><span class="line">	<span class="string">&quot;footer footer footer&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">header</span>&#123;</span><br><span class="line">    grid-area: header;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">main</span>&#123;</span><br><span class="line">    grid-area: content;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">aside</span>&#123;</span><br><span class="line">    grid-area:sidebar;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">footer</span>&#123;</span><br><span class="line">    grid-area: footer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>对齐方式</p>
-</blockquote>
-<p>行轴，块轴</p>
-<p>垂直居中：<code>    align-items: center;</code>    //每一个单元格内容物的对齐方式</p>
-<p>垂直靠下：<code>align-items: end;</code></p>
-<p>水平居中：<code>justify-items: center;</code></p>
-<p>水平靠右对齐：<code>justify-items: end;</code></p>
-<p>水平两端对齐：<code>justify-items:space-between;</code>        //最左一列水平靠左对齐 最右一列水平靠右对齐 其余的水平居中对齐</p>
-<p>如果行轨道和列轨道小于grid容器:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span>&#123;</span><br><span class="line">	<span class="attribute">align-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>所有行垂直居中于grid容器（我觉得很像是把所有单元格合并看作是一块，相对于有grid属性的外容器使用margin来进行水平居中）</p>
-<p><code>align-content: end;</code>    靠下对齐</p>
-<p><code>justify-content</code>和 <code>justifyy-items</code>用法差不多，一个是用于所有单元格合并的内容，一个是用于单元格</p>
 
       
     </div>

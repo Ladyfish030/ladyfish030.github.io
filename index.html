@@ -173,7 +173,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-03-02 20:34:43 / Modified: 20:56:04" itemprop="dateCreated datePublished" datetime="2024-03-02T20:34:43+08:00">2024-03-02</time>
+      <time title="Created: 2024-03-02 20:34:43 / Modified: 20:59:28" itemprop="dateCreated datePublished" datetime="2024-03-02T20:34:43+08:00">2024-03-02</time>
     </span>
 
   
@@ -196,14 +196,14 @@
 <h4 id="（3）情况三：方法返回值为一个匿名函数"><a href="#（3）情况三：方法返回值为一个匿名函数" class="headerlink" title="（3）情况三：方法返回值为一个匿名函数"></a>（3）情况三：方法返回值为一个匿名函数</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br><span class="line"><span class="built_in">console</span>.log(fn)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + arr)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;console.log-----&#x27;</span> + fn)</span><br></pre></td></tr></table></figure>
 
 <p>控制台输出如下，你答对了吗？</p>
-<h4 id="控制台输出结果："><a href="#控制台输出结果：" class="headerlink" title="控制台输出结果："></a>控制台输出结果：</h4><p><img src="D:\hexo\myblog\source\image\image-20220809115757055.png" alt="image-20220809115757055.png"></p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809115923874.png" alt="image-20220809115923874"></p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809115959212.png" alt="image-20220809115757055.png"></p>
+<h4 id="控制台输出结果："><a href="#控制台输出结果：" class="headerlink" title="控制台输出结果："></a>控制台输出结果：</h4><p><img src="%5Cimage%5Cimage-20220809115757055.png" alt="image-20220809115757055.png"></p>
+<p><img src="%5Cimage%5Cimage-20220809115923874.png" alt="image-20220809115923874"></p>
+<p><img src="%5Cimage%5Cimage-20220809115959212.png" alt="image-20220809115757055.png"></p>
 <p>全对的大佬可以出门左转了，出现错误的同学请继续往下看~</p>
 <h3 id="二、具体情况分析"><a href="#二、具体情况分析" class="headerlink" title="二、具体情况分析"></a>二、具体情况分析</h3><p>针对直接使用cosole.log打印单独的对象，打印语句一在三种情况下都发挥正常。但是往下看，打印语句二<code>console.log(fn)</code></p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809121806237.png" alt="image-20220809121806237"></p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809121817987.png" alt="image-20220809121817987"></p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809121828969.png" alt="image-20220809121828969"></p>
+<p><img src="%5Cimage%5Cimage-20220809121806237.png" alt="image-20220809121806237"></p>
+<p><img src="%5Cimage%5Cimage-20220809121817987.png" alt="image-20220809121817987"></p>
+<p><img src="%5Cimage%5Cimage-20220809121828969.png" alt="image-20220809121828969"></p>
 <ul>
 <li>  方法返回值为1：打印函数体，自动调用toString()</li>
 <li>  方法无返回值(undefined)：打印函数体，自动调用toString()</li>
@@ -211,7 +211,7 @@
 </ul>
 <p>从上面的结果中我们猜测，当打印的内容为函数时，会在内部隐式调用toString()，如果toString()返回基本数据类型，则数据转换到此为止。如果返回对象数据类型，则在toString()之后还会调用valueOf()。</p>
 <p>打印语句3和4：</p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809121901299.png" alt="image-20220809121901299"><img src="D:\hexo\myblog\source\image\image-20220809121914502.png" alt="image-20220809121914502"><img src="D:\hexo\myblog\source\image\image-20220809121925724.png" alt="image-20220809121925724"></p>
+<p><img src="%5Cimage%5Cimage-20220809121901299.png" alt="image-20220809121901299"><img src="%5Cimage%5Cimage-20220809121914502.png" alt="image-20220809121914502"><img src="%5Cimage%5Cimage-20220809121925724.png" alt="image-20220809121925724"></p>
 <ul>
 <li>  方法返回值为1：自动调用valueOf()，打印valueOf()返回值</li>
 <li>  方法无返回值(undefined)：自动调用valueOf()，打印valueOf()返回值</li>
@@ -223,18 +223,18 @@
 <h4 id="⭐️ToPrimitive规则"><a href="#⭐️ToPrimitive规则" class="headerlink" title="⭐️ToPrimitive规则"></a>⭐️ToPrimitive规则</h4><p>是引用类型向原始类型转变的规则，它遵循先valueOf后toString的模式期望得到一个原始类型。如果还是没法得到一个原始类型，就会抛出 TypeError。</p>
 <h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><h4 id="1-明确转换类型："><a href="#1-明确转换类型：" class="headerlink" title="1.明确转换类型："></a>1.明确转换类型：</h4><p>如alert，console.log明确引用类型是要转换为字符串类型，那么采用的策略是先toString后valueOf。</p>
 <h4 id="2-不明确转换类型："><a href="#2-不明确转换类型：" class="headerlink" title="2.不明确转换类型："></a>2.不明确转换类型：</h4><p>如隐式类型转换，那么采用ToPrimitive规则，遵循先valueOf后toString的模式期望得到一个原始类型。</p>
-<h4 id="MDN中valueOf-方法的返回值："><a href="#MDN中valueOf-方法的返回值：" class="headerlink" title="MDN中valueOf()方法的返回值："></a>MDN中valueOf()方法的返回值：</h4><p><img src="D:\hexo\myblog\source\image\image-20220809110411560.png" alt="image-20220809110411560"></p>
-<h4 id="toString方法返回值"><a href="#toString方法返回值" class="headerlink" title="toString方法返回值"></a>toString方法返回值</h4><p><img src="D:\hexo\myblog\source\image\20190719180630686.png" alt="20190719180630686"></p>
+<h4 id="MDN中valueOf-方法的返回值："><a href="#MDN中valueOf-方法的返回值：" class="headerlink" title="MDN中valueOf()方法的返回值："></a>MDN中valueOf()方法的返回值：</h4><p><img src="%5Cimage%5Cimage-20220809110411560.png" alt="image-20220809110411560"></p>
+<h4 id="toString方法返回值"><a href="#toString方法返回值" class="headerlink" title="toString方法返回值"></a>toString方法返回值</h4><p><img src="%5Cimage%5C20190719180630686.png" alt="20190719180630686"></p>
 <h4 id="3-返回值："><a href="#3-返回值：" class="headerlink" title="3.返回值："></a>3.返回值：</h4><p>在复写这两个函数时，函数返回值起着关键作用，可以决定调用几个方法和最后函数的返回值。好好利用这一特点与隐式自动调用的模式，助力成为装逼达人！</p>
 <h4 id="4-注意点："><a href="#4-注意点：" class="headerlink" title="4.注意点："></a>4.注意点：</h4><p>alert会将两个方法最后得到的原始类型值进行返回</p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809113133100.png" alt="image-20220809113133100"><br>但是console.log不会，还是返回函数体。</p>
+<p><img src="%5Cimage%5Cimage-20220809113133100.png" alt="image-20220809113133100"><br>但是console.log不会，还是返回函数体。</p>
 <p>其他引用类型类似，可以自己动手试试。</p>
 <h3 id="四、问题"><a href="#四、问题" class="headerlink" title="四、问题"></a>四、问题</h3><p>对于console.log这个操作不太理解，使用alert阻塞。可以看到先提示调用方法，但是确认完alert弹窗之后，居然console.log打印语句出现在了上面。实在是不理解，希望有懂的大佬不吝赐教。</p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809153623938.png" alt="image-20220809153623938"> <img src="C:\Users\吴佳愉\AppData\Roaming\Typora\typora-user-images\image-20220809153646505.png" alt="image-20220809153646505"></p>
+<p><img src="%5Cimage%5Cimage-20220809153623938.png" alt="image-20220809153623938"> <img src="C:\Users\吴佳愉\AppData\Roaming\Typora\typora-user-images\image-20220809153646505.png" alt="image-20220809153646505"></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;array-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Array</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;array-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;function-----调用toString方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Function</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  alert(<span class="string">&#x27;function-----调用valueOf方法&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">let</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;函数内打印&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="built_in">console</span>.log(fn);</span><br></pre></td></tr></table></figure>
 
 <h3 id="五、踩坑心得"><a href="#五、踩坑心得" class="headerlink" title="五、踩坑心得"></a>五、踩坑心得</h3><p>事情是这样的，学习的时候看到一篇文章，对照着文章中的进行实践操作却得不到一样的结果，于是顺藤摸瓜摸出了这么多瓜。。。从柯里化到隐式调用到隐式类型转换。</p>
-<p><img src="D:\hexo\myblog\source\image\image-20220809094045150.png" alt="image-20220809094045150"></p>
+<p><img src="%5Cimage%5Cimage-20220809094045150.png" alt="image-20220809094045150"></p>
 <h3 id="六、参考："><a href="#六、参考：" class="headerlink" title="六、参考："></a>六、参考：</h3><ul>
 <li>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/aNd1coder/archive/2013/03/09/2951959.html">https://www.cnblogs.com/aNd1coder/archive/2013/03/09/2951959.html</a></li>
 <li>  <a target="_blank" rel="noopener" href="https://www.jb51.net/article/32327.htm">https://www.jb51.net/article/32327.htm</a></li>
@@ -293,9 +293,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-12-11 15:47:20 / Modified: 17:04:51" itemprop="dateCreated datePublished" datetime="2023-12-11T15:47:20+08:00">2023-12-11</time>
+      <time title="Created: 2023-12-11 15:47:20" itemprop="dateCreated datePublished" datetime="2023-12-11T15:47:20+08:00">2023-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-03-02 21:00:21" itemprop="dateModified" datetime="2024-03-02T21:00:21+08:00">2024-03-02</time>
     </span>
 
   
@@ -326,7 +332,7 @@
 </li>
 </ol>
 <p>遇到的问题一：无法创建文件夹</p>
-<p><img src="D:\hexo\myblog\source\image-20231211155947870.png" alt="image-20231211155947870"></p>
+<p><img src="%5Cimage%5Cimage-20231211155947870.png" alt="image-20231211155947870"></p>
 <p>解决办法：使用管理员身份打开cmd即可，给程序创建文件夹的权限</p>
 <p>遇到的问题二：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\asus\Desktop\visual_sense_3d&gt;npm i cnpm -g</span><br><span class="line">npm ERR! code ETIMEDOUT</span><br><span class="line">npm ERR! errno ETIMEDOUT</span><br><span class="line">npm ERR! network request to https://registry.npmjs.org/graceful-readlink failed, reason: connect ETIMEDOUT 104.16.25.35:443</span><br><span class="line">npm ERR! network This is a problem related to network connectivity.</span><br><span class="line">npm ERR! network In most cases you are behind a proxy or have bad network settings.</span><br><span class="line">npm ERR! network</span><br><span class="line">npm ERR! network If you are behind a proxy, please make sure that the</span><br><span class="line">npm ERR! network &#x27;proxy&#x27; config is set properly.  See: &#x27;npm help config&#x27;</span><br><span class="line"> </span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:\Users\Deshun\AppData\Roaming\npm-cache\_logs\2023-12-01T03_09_36_539Z-debug.log</span><br></pre></td></tr></table></figure>
@@ -1091,7 +1097,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2020-09-26 14:58:38" itemprop="dateModified" datetime="2020-09-26T14:58:38+08:00">2020-09-26</time>
+      <time title="Modified: 2024-03-02 21:01:23" itemprop="dateModified" datetime="2024-03-02T21:01:23+08:00">2024-03-02</time>
     </span>
 
   
@@ -1244,7 +1250,7 @@
 
 
 
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p><img src="D:\Git\blog\myblog\source_posts\20170303180741807.png" alt="20170303180741807"></p>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p><img src="%5Cimage%5C20170303180741807.png" alt="20170303180741807"></p>
 <p>它可以总共分为8个阶段：</p>
 <ol>
 <li>beforeCreate（创建前）</li>

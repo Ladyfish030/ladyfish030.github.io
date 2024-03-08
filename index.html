@@ -179,7 +179,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-08 23:19:04" itemprop="dateModified" datetime="2024-03-08T23:19:04+08:00">2024-03-08</time>
+      <time title="Modified: 2024-03-08 23:31:10" itemprop="dateModified" datetime="2024-03-08T23:31:10+08:00">2024-03-08</time>
     </span>
 
   
@@ -215,7 +215,7 @@
 <p><img src="/image/image-20240308112101523.png" alt="image-20240308112101523"></p>
 <p>从上图可以看到调用了get函数同时也持有了get函数对原始定义作用域的引用（可以看到私有的变量modules及我们添加在上面的bar和foo）这就是闭包的效果，同时暴露公共API（<code>define</code>和<code>get</code>）得以对隐藏且私有的内部数据变量进行访问或修改。</p>
 <p>其次，该段代码的核心<code>modules[name] = impl.apply(impl, deps)</code>可以做到使用模块中与传递进来的依赖队列同名的依赖模块传递到函数中，实现函数调用。</p>
-<p>相信我，以上代码看着简单写起来可不简单哦~不仅要熟悉掌握闭包的使用还要熟悉模块模式该设计模式，所以建议大家认真看看，最好自己动手谢谢:smile:</p>
+<p>相信我，以上代码看着简单写起来可不简单哦~不仅要熟悉掌握闭包的使用还要熟悉模块模式该设计模式，所以建议大家认真看看，最好自己动手写写ヾ(•ω•`)o</p>
 
       
     </div>
